@@ -16,7 +16,7 @@ function formatMonth(value: string) {
 export default function NovelPage() {
   return (
     <>
-      <title>Novel | leewonno</title>
+      <title>Novel</title>
       <h1 className="my-5 text-3xl font-bold">Novel</h1>
       <p className="mb-6 text-muted">직접 써서 연재했던 소설이에요.</p>
       <ul className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3">

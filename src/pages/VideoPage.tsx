@@ -143,7 +143,7 @@ function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
 export default function VideoPage() {
   return (
     <>
-      <title>Video | leewonno</title>
+      <title>Video</title>
       <h1 className="my-5 text-3xl font-bold">Video</h1>
       <p className="mb-6 text-muted">직접 운영했던 좋아하는 아이돌의 팬채널이에요.</p>
       <ChannelHeader />
