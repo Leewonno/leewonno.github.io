@@ -5,7 +5,17 @@ import remarkGfm from 'remark-gfm'
 import 'highlight.js/styles/github-dark.css'
 import { formatDate, getPostBySlug } from '@/lib/posts'
 import NotFoundPage from '@/pages/NotFoundPage'
-import styles from './BlogPostPage.module.css'
+
+// 마크다운 본문은 @tailwindcss/typography(prose) 에 사이트 색상(prose-site, index.css)을 입혀 사용
+const MARKDOWN_CLASS = [
+  'prose prose-site max-w-none',
+  // 인라인 코드: 따옴표 장식 제거 + 배경 (코드 블록은 highlight.js 테마가 담당)
+  'prose-code:font-normal prose-code:before:content-none prose-code:after:content-none',
+  '[&_:not(pre)>code]:rounded-md [&_:not(pre)>code]:bg-code [&_:not(pre)>code]:px-[0.4em] [&_:not(pre)>code]:py-[0.2em]',
+  'prose-pre:rounded-lg prose-pre:bg-transparent prose-pre:p-0',
+  'prose-table:text-base prose-th:border prose-th:border-border prose-th:px-3 prose-th:py-2',
+  'prose-td:border prose-td:border-border prose-td:px-3 prose-td:py-2',
+].join(' ')
 
 export default function BlogPostPage() {
   const { slug = '' } = useParams()
@@ -17,20 +27,20 @@ export default function BlogPostPage() {
     <article>
       <title>{`${post.title} | leewonno`}</title>
       {post.description && <meta name="description" content={post.description} />}
-      <header className={styles.header}>
-        <h1 className={styles.title}>{post.title}</h1>
-        <time className={styles.meta} dateTime={post.date.toISOString()}>
+      <header className="mb-10 border-b border-border pb-6">
+        <h1 className="mb-2 text-3xl leading-[1.3] font-bold">{post.title}</h1>
+        <time className="text-sm text-muted" dateTime={post.date.toISOString()}>
           {formatDate(post.date)}
         </time>
         {post.tags.length > 0 && (
-          <ul className={styles.tags}>
+          <ul className="mt-3 flex flex-wrap gap-2 text-sm text-accent">
             {post.tags.map((tag) => (
               <li key={tag}>#{tag}</li>
             ))}
           </ul>
         )}
       </header>
-      <div className={styles.content}>
+      <div className={MARKDOWN_CLASS}>
         <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
           {post.content}
         </Markdown>
