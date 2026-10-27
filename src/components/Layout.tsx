@@ -20,7 +20,7 @@ export default function Layout() {
     <div className="mx-auto flex min-h-screen max-w-content flex-col px-5">
       <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-6">
         <NavLink to="/" className="text-lg font-bold">
-          leewonno
+          Leewonno
         </NavLink>
         <nav className="flex gap-2.5 text-sm text-muted sm:gap-5 sm:text-base">
           {NAV_ITEMS.map(({ to, label }) => (

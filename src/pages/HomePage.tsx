@@ -10,7 +10,7 @@ export default function HomePage() {
 
   return (
     <>
-      <title>leewonno</title>
+      <title>Leewonno</title>
       <section>
         <h1 className="my-5 text-3xl font-bold">{resume.name}</h1>
         <p className="my-4">{resume.headline}</p>

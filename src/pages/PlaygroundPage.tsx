@@ -6,7 +6,7 @@ import { projects } from '@/data/playground'
 export default function PlaygroundPage() {
   return (
     <>
-      <title>Playground | leewonno</title>
+      <title>Playground</title>
       <h1 className="my-5 text-3xl font-bold">Playground</h1>
       <p className="mb-6 text-muted">직접 만들어서 배포한 개인 프로젝트예요. 눌러서 써보세요.</p>
       <ul>

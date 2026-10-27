@@ -25,7 +25,7 @@ export default function BlogPostPage() {
 
   return (
     <article>
-      <title>{`${post.title} | leewonno`}</title>
+      <title>{post.title}</title>
       {post.description && <meta name="description" content={post.description} />}
       <header className="mb-10 border-b border-border pb-6">
         <h1 className="mb-2 text-3xl leading-[1.3] font-bold">{post.title}</h1>
