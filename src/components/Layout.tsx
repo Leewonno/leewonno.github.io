@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { to: '/resume', label: 'Resume' },
   { to: '/works', label: 'Works' },
   { to: '/video', label: 'Video' },
+  { to: '/novel', label: 'Novel' },
 ] as const
 
 export default function Layout() {

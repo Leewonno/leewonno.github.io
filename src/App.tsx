@@ -4,6 +4,7 @@ import Layout from '@/components/Layout'
 import BlogListPage from '@/pages/BlogListPage'
 import HomePage from '@/pages/HomePage'
 import NotFoundPage from '@/pages/NotFoundPage'
+import NovelPage from '@/pages/NovelPage'
 import ResumePage from '@/pages/ResumePage'
 import WorksPage from '@/pages/WorksPage'
 
@@ -36,6 +37,7 @@ export default function App() {
               </Suspense>
             }
           />
+          <Route path="novel" element={<NovelPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
