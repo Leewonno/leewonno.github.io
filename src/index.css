@@ -1,48 +1,57 @@
-:root {
-  --content-width: 760px;
-  --color-bg: #ffffff;
-  --color-text: #1f2328;
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --container-content: 760px;
+
+  --font-sans:
+    'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR',
+    sans-serif;
+
+  /* bg-background, text-foreground, text-muted, border-border, text-accent, bg-code */
+  --color-background: #ffffff;
+  --color-foreground: #1f2328;
   --color-muted: #656d76;
   --color-border: #d0d7de;
   --color-accent: #0969da;
-  --color-code-bg: #f6f8fa;
-
-  color-scheme: light dark;
-  font-family:
-    'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
-    'Noto Sans KR', sans-serif;
-  line-height: 1.7;
-  color: var(--color-text);
-  background: var(--color-bg);
-  -webkit-font-smoothing: antialiased;
+  --color-code: #f6f8fa;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0d1117;
-    --color-text: #e6edf3;
+    --color-background: #0d1117;
+    --color-foreground: #e6edf3;
     --color-muted: #8d96a0;
     --color-border: #30363d;
     --color-accent: #4493f8;
-    --color-code-bg: #161b22;
+    --color-code: #161b22;
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* prose 색상을 사이트 테마 변수에 연결 (다크 모드는 변수가 바뀌므로 prose-invert 불필요) */
+@utility prose-site {
+  --tw-prose-body: var(--color-foreground);
+  --tw-prose-headings: var(--color-foreground);
+  --tw-prose-lead: var(--color-muted);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: var(--color-foreground);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-border);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-muted);
+  --tw-prose-quote-borders: var(--color-border);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-code: var(--color-foreground);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
 }
 
-body {
-  margin: 0;
-}
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
+  html {
+    @apply bg-background font-sans leading-[1.7] text-foreground antialiased;
+  }
 }

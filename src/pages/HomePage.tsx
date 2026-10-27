@@ -12,11 +12,11 @@ export default function HomePage() {
     <>
       <title>leewonno</title>
       <section>
-        <h1>{resume.name}</h1>
-        <p>{resume.headline}</p>
+        <h1 className="my-5 text-3xl font-bold">{resume.name}</h1>
+        <p className="my-4">{resume.headline}</p>
       </section>
       <section>
-        <h2>
+        <h2 className="mt-10 mb-2 text-2xl font-bold">
           <Link to="/blog">최근 글</Link>
         </h2>
         <PostList posts={recentPosts} />
