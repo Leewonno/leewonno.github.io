@@ -18,7 +18,7 @@ npm run lint
 | --- | --- |
 | 블로그 글 | `src/content/posts/*.md` (파일 이름 = URL slug) |
 | 이력서 | `src/data/resume.ts` |
-| 작업물 | `src/data/works.ts` (이미지는 `public/works/`) |
+| 개인 프로젝트 (Playground) | `src/data/playground.ts` (전체 페이지 스크린샷은 `public/playground/`, 세로로 길수록 호버 시 스크롤됨) |
 | 영상 | `src/data/video.ts` (`channel` = 채널 정보, `videos` = 롱폼, `shorts` = 쇼츠, 최신순 / 프로필 사진은 `public/video/`) |
 
 블로그 글 frontmatter:

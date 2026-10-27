@@ -4,7 +4,7 @@ import { NavLink, Outlet, useLocation } from 'react-router'
 const NAV_ITEMS = [
   { to: '/blog', label: 'Blog' },
   { to: '/resume', label: 'Resume' },
-  { to: '/works', label: 'Works' },
+  { to: '/playground', label: 'Playground' },
   { to: '/video', label: 'Video' },
   { to: '/novel', label: 'Novel' },
 ] as const
@@ -18,11 +18,11 @@ export default function Layout() {
 
   return (
     <div className="mx-auto flex min-h-screen max-w-content flex-col px-5">
-      <header className="flex items-center justify-between gap-4 py-6">
+      <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-6">
         <NavLink to="/" className="text-lg font-bold">
           leewonno
         </NavLink>
-        <nav className="flex gap-3 text-sm text-muted sm:gap-5 sm:text-base">
+        <nav className="flex gap-2.5 text-sm text-muted sm:gap-5 sm:text-base">
           {NAV_ITEMS.map(({ to, label }) => (
             <NavLink
               key={to}
