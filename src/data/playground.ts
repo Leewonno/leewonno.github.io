@@ -5,14 +5,23 @@ export type PlaygroundProject = {
   description: string
   stack: readonly string[]
   year: number
-  // public/playground/ 아래 전체 페이지 스크린샷 경로 (예: '/playground/moodtrack.png')
-  // 세로로 긴 이미지일수록 마우스를 올렸을 때 아래로 스크롤되며 보여짐
+  // public/playground/ 아래 스크린샷 경로 (예: '/playground/moodtrack.png')
+  // 16:10 비율로 위쪽부터 잘려 보이므로 1280x800 같은 크기가 가장 잘 맞음
   screenshot: string
   github?: string
 }
 
-// TODO: 실제 개인 프로젝트로 교체
+// TODO: 샘플 프로젝트(Moodtrack, Bookshelf)를 실제 개인 프로젝트로 교체
 export const projects: readonly PlaygroundProject[] = [
+  {
+    title: '질문서랍',
+    url: 'https://chromewebstore.google.com/detail/question-drawer/mipekafnkjahilpfjkfhmmjjbhkofnlj',
+    description: 'AI 답변에서 궁금한 내용을 질문으로 저장하는 크롬 확장 프로그램',
+    stack: ['WXT', 'React', 'TypeScript', 'Tailwind CSS', 'Zod'],
+    year: 2026,
+    screenshot: '/playground/question-drawer.jpg',
+    github: 'https://github.com/Leewonno/QuestionDrawer',
+  },
   {
     title: 'Moodtrack',
     url: 'https://moodtrack.example.com',

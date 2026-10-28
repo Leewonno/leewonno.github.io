@@ -22,7 +22,7 @@ export default function PlaygroundPage() {
               rel="noreferrer"
               tabIndex={-1}
               aria-hidden
-              className="group block overflow-hidden rounded-xl border border-border shadow-[0_8px_24px_rgb(31_35_40/0.1)] transition-transform duration-300 hover:-translate-y-1 sm:w-[56%] sm:shrink-0"
+              className="block overflow-hidden rounded-xl border border-border shadow-[0_8px_24px_rgb(31_35_40/0.1)] sm:w-[56%] sm:shrink-0"
             >
               <div className="flex items-center gap-1.5 border-b border-border bg-code px-3 py-2">
                 <span className="size-2 rounded-full bg-border" />
@@ -33,12 +33,11 @@ export default function PlaygroundPage() {
                   <span className="truncate">{new URL(project.url).host}</span>
                 </span>
               </div>
-              {/* 세로로 긴 스크린샷을 위쪽만 보여주다가, 마우스를 올리면 천천히 아래쪽까지 스크롤 */}
               <img
                 src={project.screenshot}
                 alt=""
                 loading="lazy"
-                className="block aspect-16/10 w-full bg-code object-cover object-top transition-[object-position] duration-700 ease-in-out group-hover:object-bottom group-hover:duration-[5000ms]"
+                className="block aspect-16/10 w-full bg-code object-cover object-top"
               />
             </a>
             <div className="min-w-0 flex-1">
