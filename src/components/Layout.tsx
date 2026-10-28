@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router'
+import Cross from '~icons/akar-icons/cross'
+import ThreeLineHorizontal from '~icons/akar-icons/three-line-horizontal'
 
 const NAV_ITEMS = [
   { to: '/blog', label: 'Blog' },
@@ -11,24 +13,55 @@ const NAV_ITEMS = [
 
 export default function Layout() {
   const { pathname } = useLocation()
+  // 좁은 화면(sm 미만)에서만 쓰는 햄버거 메뉴 열림 상태
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const closeMenu = () => setIsMenuOpen(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
 
+  useEffect(() => {
+    if (!isMenuOpen) return
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMenuOpen(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isMenuOpen])
+
   return (
     <div className="mx-auto flex min-h-screen max-w-content flex-col px-5">
-      <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-6">
-        <NavLink to="/" className="text-lg font-bold">
+      <header className="flex flex-wrap items-center justify-between gap-x-4 py-6">
+        <NavLink to="/" className="text-lg font-bold" onClick={closeMenu}>
           Leewonno
         </NavLink>
-        <nav className="flex gap-2.5 text-sm text-muted sm:gap-5 sm:text-base">
+        <button
+          type="button"
+          aria-label={isMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+          aria-expanded={isMenuOpen}
+          aria-controls="site-nav"
+          className="-my-1 -mr-2 inline-flex size-9 cursor-pointer items-center justify-center rounded-md text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:hidden"
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          {isMenuOpen ? (
+            <Cross width={20} height={20} aria-hidden />
+          ) : (
+            <ThreeLineHorizontal width={20} height={20} aria-hidden />
+          )}
+        </button>
+        <nav
+          id="site-nav"
+          className={`${isMenuOpen ? 'flex' : 'hidden'} mt-4 w-full flex-col border-t border-border pt-2 text-muted sm:mt-0 sm:flex sm:w-auto sm:flex-row sm:gap-5 sm:border-t-0 sm:pt-0`}
+        >
           {NAV_ITEMS.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
+              onClick={closeMenu}
               className={({ isActive }) =>
-                isActive ? 'text-foreground' : 'hover:text-foreground'
+                `py-2 sm:py-0 ${isActive ? 'text-foreground' : 'hover:text-foreground'}`
               }
             >
               {label}
@@ -36,7 +69,7 @@ export default function Layout() {
           ))}
         </nav>
       </header>
-      <main className="flex-1 pt-6 pb-16">
+      <main className="flex-1 pt-2 pb-16 sm:pt-6">
         <Outlet />
       </main>
       <footer className="border-t border-border py-6 text-sm text-muted">

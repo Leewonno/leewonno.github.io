@@ -12,7 +12,7 @@
   --color-background: #ffffff;
   --color-foreground: #1f2328;
   --color-muted: #656d76;
-  --color-border: #d0d7de;
+  --color-border: #e1e4e8;
   --color-accent: #0969da;
   --color-code: #f6f8fa;
 }
@@ -22,7 +22,7 @@
     --color-background: #0d1117;
     --color-foreground: #e6edf3;
     --color-muted: #8d96a0;
-    --color-border: #30363d;
+    --color-border: #21262d;
     --color-accent: #4493f8;
     --color-code: #161b22;
   }
@@ -52,6 +52,7 @@
   }
 
   html {
-    @apply bg-background font-sans leading-[1.7] text-foreground antialiased;
+    /* 한글이 음절 단위로 끊기지 않도록 어절 단위 줄바꿈, 긴 URL 등은 넘치지 않게 강제 줄바꿈 */
+    @apply bg-background font-sans leading-[1.7] text-foreground antialiased break-keep wrap-break-word;
   }
 }
