@@ -13,6 +13,8 @@ const MARKDOWN_CLASS = [
   'prose-code:font-normal prose-code:before:content-none prose-code:after:content-none',
   '[&_:not(pre)>code]:rounded-md [&_:not(pre)>code]:bg-code [&_:not(pre)>code]:px-[0.4em] [&_:not(pre)>code]:py-[0.2em]',
   'prose-pre:rounded-lg prose-pre:bg-transparent prose-pre:p-0',
+  // 좁은 화면에서 표가 본문 밖으로 넘치지 않도록 표 자체를 가로 스크롤
+  'prose-table:block prose-table:overflow-x-auto',
   'prose-table:text-base prose-th:border prose-th:border-border prose-th:px-3 prose-th:py-2',
   'prose-td:border prose-td:border-border prose-td:px-3 prose-td:py-2',
 ].join(' ')
@@ -28,7 +30,7 @@ export default function BlogPostPage() {
       <title>{post.title}</title>
       {post.description && <meta name="description" content={post.description} />}
       <header className="mb-10 border-b border-border pb-6">
-        <h1 className="mb-2 text-3xl leading-[1.3] font-bold">{post.title}</h1>
+        <h1 className="mb-2 text-2xl leading-[1.3] font-bold sm:text-3xl">{post.title}</h1>
         <time className="text-sm text-muted" dateTime={post.date.toISOString()}>
           {formatDate(post.date)}
         </time>

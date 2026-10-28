@@ -4,7 +4,7 @@ export default function NotFoundPage() {
   return (
     <>
       <title>404</title>
-      <h1 className="my-5 text-3xl font-bold">404</h1>
+      <h1 className="my-4 text-2xl font-bold sm:my-5 sm:text-3xl">404</h1>
       <p className="my-4">페이지를 찾을 수 없습니다.</p>
       <Link to="/" className="text-accent hover:underline">
         홈으로
