@@ -7,8 +7,11 @@ export type PlaygroundProject = {
   year: number
   // public/playground/ 아래 스크린샷 경로 (예: '/playground/moodtrack.png')
   // 16:10 비율로 위쪽부터 잘려 보이므로 1280x800 같은 크기가 가장 잘 맞음
-  screenshot: string
+  // 없으면 빈 화면 자리에 제목만 보임
+  screenshot?: string
   github?: string
+  // 사이트로 가는 버튼 문구, 없으면 '사이트 열기'
+  linkLabel?: string
 }
 
 // TODO: 샘플 프로젝트(Moodtrack, Bookshelf)를 실제 개인 프로젝트로 교체
@@ -21,6 +24,27 @@ export const projects: readonly PlaygroundProject[] = [
     year: 2026,
     screenshot: '/playground/question-drawer.jpg',
     github: 'https://github.com/Leewonno/QuestionDrawer',
+    linkLabel: '설치하기',
+  },
+  {
+    title: 'NMIXX FANS',
+    // 배포된 앱이 없어 시연 영상으로 연결
+    url: 'https://www.youtube.com/playlist?list=PLxbRBTyPvzi-30qypQgCwtfdSN0dXImkd',
+    description: 'Blue Garage의 FANS 서비스를 바탕으로 만든 NMIXX 팬 커뮤니티 앱',
+    stack: ['React Native', 'TypeScript', 'Redux Toolkit', 'styled-components', 'Django', 'GraphQL'],
+    year: 2025,
+    screenshot: '/playground/nmixx-fans.jpg',
+    github: 'https://github.com/Leewonno/NMIXX-FANS-APP',
+    linkLabel: '시연 영상',
+  },
+  {
+    title: 'NOVELCUT',
+    url: 'https://novelcut-1f6f2.web.app/',
+    description: '컷 형식으로 읽는 웹소설 연재 플랫폼',
+    stack: ['React', 'JavaScript', 'Firebase', 'Node.js', 'MySQL', 'AWS'],
+    year: 2023,
+    // TODO: UI 리팩토링 후 스크린샷 추가
+    github: 'https://github.com/Leewonno/novelcut',
   },
   {
     title: 'Moodtrack',
