@@ -12,6 +12,8 @@ export type Highlight = {
 
 export type Experience = {
   company: string
+  // public/resume/ 아래 회사 심볼(정사각) 경로 (예: '/resume/tilon.png')
+  logo?: string
   team: string
   role: string
   period: string
@@ -53,10 +55,11 @@ export const resume: Resume = {
   headline: 'Frontend Developer',
   email: 'dldnjssh123@naver.com',
   github: 'https://github.com/Leewonno',
-  avatar: 'https://github.com/Leewonno.png',
+  avatar: '/resume/profile.jpg',
   experiences: [
     {
       company: '틸론',
+      logo: '/resume/tilon.png',
       team: '프론티어연구소',
       role: 'Frontend Developer',
       period: '2026.06 ~ 재직 중',
@@ -75,6 +78,7 @@ export const resume: Resume = {
     },
     {
       company: '이로운소프트',
+      logo: '/resume/eroun-soft.png',
       team: 'SI 개발팀',
       role: 'Frontend Developer',
       period: '2025.12 ~ 2026.03',
@@ -89,6 +93,7 @@ export const resume: Resume = {
     },
     {
       company: '서울소프트',
+      logo: '/resume/seoulsoft.png',
       team: '모빌리티 개발팀',
       role: 'Fullstack Developer',
       period: '2024.04 ~ 2025.11',
