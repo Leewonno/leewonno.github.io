@@ -23,7 +23,7 @@ function ChannelHeader() {
       href={channel.url}
       target="_blank"
       rel="noreferrer"
-      className="flex items-center gap-3.5 rounded-2xl border border-border px-4 py-3.5 hover:bg-code"
+      className="flex items-center gap-3.5 rounded-2xl border border-border px-4 py-3.5 transition-colors duration-300 hover:bg-code motion-reduce:transition-none"
     >
       <img src={channel.avatar} alt="" width={56} height={56} className="size-14 shrink-0 rounded-full object-cover" />
       <div className="min-w-0 flex-1">
@@ -63,11 +63,19 @@ type VideoSectionProps = {
 
 function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
   const [visibleCount, setVisibleCount] = useState(pageSize)
+  const [loadedIds, setLoadedIds] = useState<ReadonlySet<string>>(() => new Set())
   const isShort = variant === 'short'
+
+  const shownItems = items.slice(0, visibleCount)
+  // 받아진 순서와 상관없이 왼쪽부터 차례로 보이도록, 앞에서부터 연속으로 로드된 썸네일까지만 표시
+  const firstPendingIndex = shownItems.findIndex((item) => !loadedIds.has(item.id))
+  const revealedCount = firstPendingIndex === -1 ? shownItems.length : firstPendingIndex
+
+  const markLoaded = (id: string) => setLoadedIds((prev) => new Set(prev).add(id))
 
   return (
     <section className="mt-8">
-      <h2 className="my-5 text-2xl font-bold">{title}</h2>
+      <h2 className="my-4 text-xl font-bold sm:my-5 sm:text-2xl">{title}</h2>
       <ul
         className={
           isShort
@@ -75,7 +83,7 @@ function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
             : 'grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2'
         }
       >
-        {items.slice(0, visibleCount).map((item) => (
+        {shownItems.map((item, index) => (
           <li key={item.id}>
             <a
               href={
@@ -87,14 +95,18 @@ function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
               rel="noreferrer"
               className="group block"
             >
-              <div className="relative overflow-hidden rounded-lg">
+              <div className="relative overflow-hidden rounded-lg bg-code">
                 {/* hqdefault 는 4:3 레터박스라 object-fit: cover 로 16:9 / 9:16 에 맞춰 자름 */}
+                {/* 쇼츠는 잘린 경계가 검은 띠 끝과 겹쳐 좌우에 어두운 선이 남으므로 살짝 확대해 가림 */}
                 <img
                   src={`https://i.ytimg.com/vi/${item.id}/hqdefault.jpg`}
                   // 쇼츠는 썸네일만 보여주므로 제목을 alt 로 제공
                   alt={isShort ? item.title : ''}
                   loading="lazy"
-                  className={`block w-full bg-code object-cover ${isShort ? 'aspect-9/16' : 'aspect-video'}`}
+                  onLoad={() => markLoaded(item.id)}
+                  // 실패한 썸네일이 뒤쪽 항목을 계속 막지 않도록 로드된 것으로 처리
+                  onError={() => markLoaded(item.id)}
+                  className={`block w-full object-cover transition-opacity duration-300 motion-reduce:transition-none ${isShort ? 'aspect-9/16 scale-[1.02]' : 'aspect-video'} ${index < revealedCount ? 'opacity-100' : 'opacity-0'}`}
                 />
                 <span
                   className="absolute inset-0 flex items-center justify-center bg-black/45 text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100"
@@ -128,7 +140,7 @@ function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
         <div className="mt-6 flex justify-center">
           <button
             type="button"
-            className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border px-4 py-1.5 text-sm hover:bg-code"
+            className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border px-4 py-1.5 text-sm transition-colors duration-300 hover:bg-code motion-reduce:transition-none"
             onClick={() => setVisibleCount((count) => count + pageSize)}
           >
             더보기
@@ -144,8 +156,8 @@ export default function VideoPage() {
   return (
     <>
       <title>Video</title>
-      <h1 className="my-5 text-3xl font-bold">Video</h1>
-      <p className="mb-6 text-muted">직접 운영했던 좋아하는 아이돌의 팬채널이에요.</p>
+      <h1 className="my-4 text-2xl font-bold sm:my-5 sm:text-3xl">Video</h1>
+      <p className="mb-6 text-sm text-muted sm:text-base">직접 운영했던 좋아하는 아이돌의 팬채널이에요.</p>
       <ChannelHeader />
       <VideoSection title="영상" items={videos} pageSize={VIDEO_PAGE_SIZE} variant="video" />
       <VideoSection title="Shorts" items={shorts} pageSize={SHORTS_PAGE_SIZE} variant="short" />
