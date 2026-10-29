@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
 import 'highlight.js/styles/github-dark.css'
+import Comments from '@/components/Comments'
 import { formatDate, getPostBySlug } from '@/lib/posts'
 import NotFoundPage from '@/pages/NotFoundPage'
 
@@ -47,6 +48,7 @@ export default function BlogPostPage() {
           {post.content}
         </Markdown>
       </div>
+      <Comments term={post.slug} />
     </article>
   )
 }
