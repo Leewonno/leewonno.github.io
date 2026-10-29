@@ -1,6 +1,6 @@
 import ArrowUpRight from '~icons/akar-icons/arrow-up-right'
 import GithubFill from '~icons/akar-icons/github-fill'
-import LockOn from '~icons/akar-icons/lock-on'
+import BrowserFrame from '@/components/BrowserFrame'
 import { projects } from '@/data/playground'
 
 export default function PlaygroundPage() {
@@ -24,27 +24,7 @@ export default function PlaygroundPage() {
               aria-hidden
               className="block overflow-hidden rounded-xl border border-border shadow-[0_8px_24px_rgb(31_35_40/0.1)] sm:w-[56%] sm:shrink-0"
             >
-              <div className="flex items-center gap-1.5 border-b border-border bg-code px-3 py-2">
-                <span className="size-2 rounded-full bg-border" />
-                <span className="size-2 rounded-full bg-border" />
-                <span className="size-2 rounded-full bg-border" />
-                <span className="ml-2 flex min-w-0 flex-1 items-center gap-1 rounded-full border border-border bg-background px-2.5 text-[11px] text-muted">
-                  <LockOn width={9} height={9} className="shrink-0" />
-                  <span className="truncate">{new URL(project.url).host}</span>
-                </span>
-              </div>
-              {project.screenshot ? (
-                <img
-                  src={project.screenshot}
-                  alt=""
-                  loading="lazy"
-                  className="block aspect-16/10 w-full bg-code object-cover object-top"
-                />
-              ) : (
-                <div className="flex aspect-16/10 w-full items-center justify-center bg-code text-2xl font-bold text-muted">
-                  {project.title}
-                </div>
-              )}
+              <BrowserFrame url={project.url} title={project.title} screenshot={project.screenshot} />
             </a>
             <div className="min-w-0 flex-1">
               <h2 className="text-xl font-bold">{project.title}</h2>
