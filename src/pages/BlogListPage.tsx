@@ -5,7 +5,7 @@ export default function BlogListPage() {
   return (
     <>
       <title>Blog</title>
-      <h1 className="my-4 text-2xl font-bold sm:my-5 sm:text-3xl">Blog</h1>
+      <h1 className="my-4 text-xl font-bold uppercase sm:my-5 sm:text-2xl">Blog</h1>
       <PostList posts={getAllPosts()} />
     </>
   )
