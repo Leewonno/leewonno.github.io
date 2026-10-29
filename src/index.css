@@ -17,15 +17,16 @@
   --color-code: #f6f8fa;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #0d1117;
-    --color-foreground: #e6edf3;
-    --color-muted: #8d96a0;
-    --color-border: #21262d;
-    --color-accent: #4493f8;
-    --color-code: #161b22;
-  }
+/* 테마는 <html data-theme> 로 결정 (index.html 인라인 스크립트 + 헤더 토글 버튼) */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+:root[data-theme='dark'] {
+  --color-background: #0d1117;
+  --color-foreground: #e6edf3;
+  --color-muted: #8d96a0;
+  --color-border: #21262d;
+  --color-accent: #4493f8;
+  --color-code: #161b22;
 }
 
 /* prose 색상을 사이트 테마 변수에 연결 (다크 모드는 변수가 바뀌므로 prose-invert 불필요) */
@@ -47,8 +48,13 @@
 }
 
 @layer base {
+  /* 스크롤바·폼 컨트롤 등 브라우저 기본 UI도 선택한 테마를 따르도록 */
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
   }
 
   html {

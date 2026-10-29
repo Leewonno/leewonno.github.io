@@ -11,6 +11,19 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
     />
     <title>Leewonno</title>
+    <script>
+      // 저장된 테마가 없으면 OS 설정을 따름. 첫 페인트 전에 적용해야 다크 모드에서 흰 화면이 번쩍이지 않음
+      ;(() => {
+        let theme
+        try {
+          theme = localStorage.getItem('theme')
+        } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

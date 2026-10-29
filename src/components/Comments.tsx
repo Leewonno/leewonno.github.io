@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { getTheme, useTheme } from '@/lib/theme'
 
 // giscus.app 설정 페이지에서 발급받은 값 (GitHub Discussions 기반 댓글)
 const GISCUS_CONFIG = {
@@ -15,6 +16,7 @@ type CommentsProps = {
 
 export default function Comments({ term }: CommentsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const theme = useTheme()
 
   useEffect(() => {
     const container = containerRef.current
@@ -35,8 +37,8 @@ export default function Comments({ term }: CommentsProps) {
       reactionsEnabled: '1',
       emitMetadata: '0',
       inputPosition: 'top',
-      // 사이트와 같이 OS 다크 모드 설정을 따름
-      theme: 'preferred_color_scheme',
+      // 처음 불러올 때의 사이트 테마. 이후 전환은 아래 effect 가 iframe 에 전달
+      theme: getTheme(),
       lang: 'ko',
       loading: 'lazy',
     })
@@ -45,6 +47,12 @@ export default function Comments({ term }: CommentsProps) {
     // 다른 글로 이동하면 이전 글의 iframe을 지우고 새로 불러옴
     return () => container.replaceChildren()
   }, [term])
+
+  // 테마를 바꾸면 iframe 을 다시 불러오지 않고 giscus 에 메시지로 알림
+  useEffect(() => {
+    const iframe = containerRef.current?.querySelector<HTMLIFrameElement>('iframe.giscus-frame')
+    iframe?.contentWindow?.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app')
+  }, [theme])
 
   return <div ref={containerRef} className="giscus mt-16 border-t border-border pt-10" />
 }
