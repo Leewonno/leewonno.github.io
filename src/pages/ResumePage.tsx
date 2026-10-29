@@ -1,7 +1,9 @@
-import ChevronDown from '~icons/akar-icons/chevron-down'
+import Envelope from '~icons/akar-icons/envelope'
 import File from '~icons/akar-icons/file'
 import GithubFill from '~icons/akar-icons/github-fill'
 import LinkedinFill from '~icons/akar-icons/linkedin-fill'
+import Phone from '~icons/akar-icons/phone'
+import HighlightAccordion from '@/components/HighlightAccordion'
 import { resume, type Experience, type Highlight } from '@/data/resume'
 
 const CURRENT_LABEL = '재직 중'
@@ -28,8 +30,9 @@ export default function ResumePage() {
   return (
     <>
       <title>Resume</title>
-      <header className="flex flex-wrap items-center gap-4 sm:flex-nowrap sm:gap-6">
-        <div className="size-20 shrink-0 overflow-hidden rounded-full border border-border bg-code sm:size-32">
+      {/* 좁은 화면에서는 아바타 아래로 쌓아 가운데 정렬 */}
+      <header className="flex flex-col items-center gap-4 text-center sm:flex-row sm:gap-10 sm:text-left">
+        <div className="size-32 shrink-0 overflow-hidden rounded-full bg-code sm:size-40">
           <img
             src={resume.avatar}
             alt=""
@@ -39,7 +42,34 @@ export default function ResumePage() {
         <div className="min-w-0 flex-1">
           <h1 className="text-2xl leading-snug font-bold sm:text-[1.75rem]">{resume.name}</h1>
           <p className="mt-0.5 text-muted">{resume.headline}</p>
-          <ul className="mt-2.5 flex gap-1.5">
+          <dl className="mt-2 flex flex-col items-center gap-0.5 text-sm sm:flex-row sm:flex-wrap sm:gap-x-4 sm:gap-y-0.5">
+            <div className="flex items-center gap-1.5">
+              <dt className="text-muted">
+                <Phone aria-hidden className="size-3.5" />
+                <span className="sr-only">Phone</span>
+              </dt>
+              <dd>
+                <a
+                  href={`tel:${resume.phone.replace(/\D/g, '')}`}
+                  className={contactTextLinkClass}
+                >
+                  {resume.phone}
+                </a>
+              </dd>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <dt className="text-muted">
+                <Envelope aria-hidden className="size-3.5" />
+                <span className="sr-only">Email</span>
+              </dt>
+              <dd>
+                <a href={`mailto:${resume.email}`} className={contactTextLinkClass}>
+                  {resume.email}
+                </a>
+              </dd>
+            </div>
+          </dl>
+          <ul className="mt-3 flex justify-center gap-1.5 sm:justify-start">
             <li>
               <a
                 href={resume.github}
@@ -78,24 +108,6 @@ export default function ResumePage() {
             </li>
           </ul>
         </div>
-        {/* 좁은 화면에서는 헤더 아래 줄로 내려 왼쪽 정렬 */}
-        <dl className="grid grid-cols-[auto_auto] justify-start gap-x-3 gap-y-1 text-sm max-sm:w-full sm:self-end sm:border-l sm:border-border sm:pl-5">
-          <dt className="text-muted">Phone</dt>
-          <dd>
-            <a
-              href={`tel:${resume.phone.replace(/\D/g, '')}`}
-              className={contactTextLinkClass}
-            >
-              {resume.phone}
-            </a>
-          </dd>
-          <dt className="text-muted">Email</dt>
-          <dd>
-            <a href={`mailto:${resume.email}`} className={contactTextLinkClass}>
-              {resume.email}
-            </a>
-          </dd>
-        </dl>
       </header>
 
       <section className="mt-14">
@@ -107,55 +119,34 @@ export default function ResumePage() {
               key={`${experience.company}-${experience.period}`}
               className="grid grid-cols-[150px_minmax(0,1fr)] gap-x-8 gap-y-2 border-b border-border py-6 last:border-b-0 max-sm:grid-cols-1"
             >
-              <p className="pt-0.5 text-sm text-muted tabular-nums">
+              <p className="pt-0.5 text-[0.8125rem] text-muted tabular-nums sm:text-sm">
                 {start} ~
                 <br className="max-sm:hidden" />{' '}
                 {end === CURRENT_LABEL ? (
-                  <span className="text-xs font-semibold text-accent">{end}</span>
+                  <span className="text-[0.6875rem] font-semibold text-accent sm:text-xs">{end}</span>
                 ) : (
                   end
                 )}
               </p>
               <div>
-                <h3 className="flex items-center gap-2 text-lg leading-snug font-semibold">
+                <h3 className="flex items-center gap-2 text-base leading-snug font-semibold sm:text-lg">
                   {experience.logo && (
                     // 심볼 색이 다크 모드 배경에 묻히지 않도록 항상 흰 바탕 위에 표시
-                    <span className="flex size-5.5 shrink-0 items-center justify-center rounded-[5px] border border-border bg-white">
+                    <span className="flex size-5.5 shrink-0 items-center justify-center rounded-[5px] border border-border/50 bg-white">
                       <img src={experience.logo} alt="" className="size-3.5 object-contain" />
                     </span>
                   )}
                   {experience.company}
                 </h3>
-                <p className="text-sm text-muted">
+                <p className="mt-1 text-[0.8125rem] text-muted sm:text-sm">
                   {experience.team} · {experience.role}
                 </p>
                 <div className="mt-2">
                   {experience.highlights.map((highlight) => (
-                    <details key={getHighlightKey(experience, highlight)} className="group">
-                      <summary className="-mx-3 flex cursor-pointer list-none items-start gap-3 rounded-md px-3 py-2 transition-colors duration-300 hover:bg-code motion-reduce:transition-none [&::-webkit-details-marker]:hidden">
-                        {/* 좁은 화면에서는 지표를 제목 아래 줄로 내림 */}
-                        <span className="flex flex-1 items-start gap-3 max-sm:flex-col max-sm:gap-0.5">
-                          <span className="flex-1 font-semibold">{highlight.title}</span>
-                          {highlight.metric && (
-                            <span className="shrink-0 text-[0.8125rem] text-muted tabular-nums sm:pt-0.5">
-                              {highlight.metric.before} →{' '}
-                              <span className="font-semibold text-foreground">
-                                {highlight.metric.after}
-                              </span>
-                            </span>
-                          )}
-                        </span>
-                        <ChevronDown
-                          width={16}
-                          height={16}
-                          aria-hidden
-                          className="mt-1 shrink-0 text-muted transition-transform group-open:rotate-180 motion-reduce:transition-none"
-                        />
-                      </summary>
-                      <p className="pr-7 pb-3 text-[0.9375rem] text-muted">
-                        {highlight.description}
-                      </p>
-                    </details>
+                    <HighlightAccordion
+                      key={getHighlightKey(experience, highlight)}
+                      highlight={highlight}
+                    />
                   ))}
                 </div>
               </div>
@@ -170,7 +161,7 @@ export default function ResumePage() {
           {resume.skills.map((group) => (
             <div key={group.category} className="contents">
               <dt className="text-sm font-semibold max-sm:mt-2">{group.category}</dt>
-              <dd className="text-[0.9375rem] text-muted">{group.items.join(' · ')}</dd>
+              <dd className="text-sm text-muted">{group.items.join(' · ')}</dd>
             </div>
           ))}
         </dl>
