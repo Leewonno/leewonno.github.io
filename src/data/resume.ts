@@ -55,7 +55,7 @@ export type Resume = {
 
 export const resume: Resume = {
   name: '이원노',
-  headline: 'Frontend Developer',
+  headline: 'Frontend Engineer',
   email: 'dldnjssh123@naver.com',
   phone: '010-5253-4143',
   github: 'https://github.com/Leewonno',
@@ -68,7 +68,7 @@ export const resume: Resume = {
       company: '틸론',
       logo: '/resume/tilon.png',
       team: '프론티어연구소',
-      role: 'Frontend Developer',
+      role: 'Frontend Engineer',
       period: '2026.06 ~ 재직 중',
       highlights: [
         {
@@ -87,7 +87,7 @@ export const resume: Resume = {
       company: '이로운소프트',
       logo: '/resume/eroun-soft.png',
       team: 'SI 개발팀',
-      role: 'Frontend Developer',
+      role: 'Frontend Engineer',
       period: '2025.12 ~ 2026.03',
       highlights: [
         {
@@ -102,7 +102,7 @@ export const resume: Resume = {
       company: '서울소프트',
       logo: '/resume/seoulsoft.png',
       team: '모빌리티 개발팀',
-      role: 'Fullstack Developer',
+      role: 'Fullstack Engineer',
       period: '2024.04 ~ 2025.11',
       highlights: [
         {

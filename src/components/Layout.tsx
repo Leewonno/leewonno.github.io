@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router'
 import Cross from '~icons/akar-icons/cross'
+import GithubFill from '~icons/akar-icons/github-fill'
+import LinkedinFill from '~icons/akar-icons/linkedin-fill'
 import ThreeLineHorizontal from '~icons/akar-icons/three-line-horizontal'
+import { resume } from '@/data/resume'
 
 const NAV_ITEMS = [
   { to: '/blog', label: 'Blog' },
@@ -9,6 +12,11 @@ const NAV_ITEMS = [
   { to: '/playground', label: 'Playground' },
   { to: '/video', label: 'Video' },
   { to: '/novel', label: 'Novel' },
+] as const
+
+const SOCIAL_LINKS = [
+  { href: resume.github, label: 'GitHub', title: 'GitHub', Icon: GithubFill },
+  { href: resume.linkedin, label: 'LinkedIn', title: 'LinkedIn', Icon: LinkedinFill },
 ] as const
 
 export default function Layout() {
@@ -78,9 +86,23 @@ export default function Layout() {
         <Outlet />
       </main>
       <footer className="border-t border-border py-6 text-sm text-muted">
-        <a href="https://github.com/Leewonno" target="_blank" rel="noreferrer">
-          GitHub
-        </a>
+        <ul className="flex gap-3">
+          {SOCIAL_LINKS.map(({ href, label, title, Icon }) => (
+            <li key={href}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                title={title}
+                className="block"
+              >
+                <Icon aria-hidden className="block size-4" />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-xs">ⓒ 2026. Leewonno. All rights reserved.</p>
       </footer>
     </div>
   )
