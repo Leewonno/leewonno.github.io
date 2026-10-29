@@ -1,5 +1,11 @@
 export type NovelStatus = 'ongoing' | 'completed' | 'paused'
 
+export const NOVEL_STATUS_LABEL: Record<NovelStatus, string> = {
+  ongoing: '연재 중',
+  completed: '완결',
+  paused: '연재 중단',
+}
+
 export type Novel = {
   title: string
   penName: string
