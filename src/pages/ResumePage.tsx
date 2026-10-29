@@ -58,7 +58,7 @@ export default function ResumePage() {
               </a>
             </dd>
           </div>
-          <div className="flex items-center justify-center gap-2 py-2 sm:justify-start sm:px-6 sm:py-0">
+          <div className="flex items-center justify-center gap-2 py-2 sm:justify-start sm:border-r sm:border-border sm:px-6 sm:py-0">
             <dt className="text-muted">
               <Envelope aria-hidden className="size-4" />
               <span className="sr-only">Email</span>
@@ -70,7 +70,7 @@ export default function ResumePage() {
             </dd>
           </div>
         </dl>
-        <ul className="flex justify-center gap-1.5 border-t border-border py-2 sm:flex-1 sm:justify-end sm:border-t-0 sm:border-l sm:py-0 sm:pl-6">
+        <ul className="flex justify-center gap-1.5 border-t border-border py-2 sm:flex-1 sm:justify-end sm:border-t-0 sm:py-0 sm:pl-6">
           <li>
             <a
               href={resume.github}
