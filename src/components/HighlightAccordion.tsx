@@ -18,13 +18,15 @@ export default function HighlightAccordion({ highlight }: HighlightAccordionProp
         aria-expanded={isOpen}
         aria-controls={panelId}
         onClick={() => setIsOpen((open) => !open)}
-        className="-mx-3 flex w-[calc(100%+1.5rem)] cursor-pointer items-start gap-3 rounded-md px-3 py-2 text-left transition-colors duration-300 hover:bg-code motion-reduce:transition-none"
+        className="group flex w-full cursor-pointer items-start gap-3 text-left"
       >
         {/* 좁은 화면에서는 지표를 제목 아래 줄로 내림 */}
         <span className="flex flex-1 items-start gap-3 max-sm:flex-col max-sm:gap-0.5">
-          <span className="flex-1 text-[0.9375rem] font-semibold sm:text-base">{highlight.title}</span>
+          <span className="flex-1 text-base font-semibold transition-colors duration-300 group-hover:text-accent motion-reduce:transition-none sm:text-[1.0625rem]">
+            {highlight.title}
+          </span>
           {highlight.metric && (
-            <span className="shrink-0 text-xs text-muted tabular-nums sm:pt-0.5 sm:text-[0.8125rem]">
+            <span className="shrink-0 text-[0.8125rem] text-muted tabular-nums sm:pt-0.5 sm:text-sm">
               {highlight.metric.before} →{' '}
               <span className="font-semibold text-foreground">{highlight.metric.after}</span>
             </span>
@@ -43,7 +45,9 @@ export default function HighlightAccordion({ highlight }: HighlightAccordionProp
         className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
       >
         <div className="overflow-hidden">
-          <p className="pr-7 pb-3 text-sm text-muted sm:text-[0.9375rem]">{highlight.description}</p>
+          <p className="pt-1.5 pr-7 pb-1 text-[0.9375rem] text-muted sm:text-base">
+            {highlight.description}
+          </p>
         </div>
       </div>
     </div>

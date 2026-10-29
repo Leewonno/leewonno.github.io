@@ -17,8 +17,7 @@ const splitPeriod = (period: string) => {
   return { start, end }
 }
 
-const sectionTitleClass =
-  'text-[0.8125rem] font-semibold tracking-[0.08em] text-muted uppercase'
+const sectionTitleClass = 'text-sm font-semibold tracking-[0.08em] text-muted uppercase'
 
 const contactLinkClass =
   'inline-flex size-7 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-8'
@@ -42,73 +41,74 @@ export default function ResumePage() {
         <div className="min-w-0 flex-1">
           <h1 className="text-2xl leading-snug font-bold sm:text-[1.75rem]">{resume.name}</h1>
           <p className="mt-0.5 text-muted">{resume.headline}</p>
-          <dl className="mt-2 flex flex-col items-center gap-0.5 text-sm sm:flex-row sm:flex-wrap sm:gap-x-4 sm:gap-y-0.5">
-            <div className="flex items-center gap-1.5">
-              <dt className="text-muted">
-                <Phone aria-hidden className="size-3.5" />
-                <span className="sr-only">Phone</span>
-              </dt>
-              <dd>
-                <a
-                  href={`tel:${resume.phone.replace(/\D/g, '')}`}
-                  className={contactTextLinkClass}
-                >
-                  {resume.phone}
-                </a>
-              </dd>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <dt className="text-muted">
-                <Envelope aria-hidden className="size-3.5" />
-                <span className="sr-only">Email</span>
-              </dt>
-              <dd>
-                <a href={`mailto:${resume.email}`} className={contactTextLinkClass}>
-                  {resume.email}
-                </a>
-              </dd>
-            </div>
-          </dl>
-          <ul className="mt-3 flex justify-center gap-1.5 sm:justify-start">
-            <li>
-              <a
-                href={resume.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                title="GitHub"
-                className={contactLinkClass}
-              >
-                <GithubFill aria-hidden className="size-3.5 sm:size-4" />
-              </a>
-            </li>
-            <li>
-              <a
-                href={resume.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                title="LinkedIn"
-                className={contactLinkClass}
-              >
-                <LinkedinFill aria-hidden className="size-3.5 sm:size-4" />
-              </a>
-            </li>
-            <li>
-              <a
-                href={resume.pdf}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="이력서 PDF (새 창)"
-                title="이력서 PDF"
-                className={contactLinkClass}
-              >
-                <File aria-hidden className="size-3.5 sm:size-4" />
-              </a>
-            </li>
-          </ul>
         </div>
       </header>
+
+      {/* 좁은 화면에서는 전화·이메일·링크를 가로선으로 나눈 세 줄로 쌓음 */}
+      <div className="mt-8 border-y border-border text-[0.9375rem] sm:mt-10 sm:flex sm:items-center sm:py-3">
+        <dl className="divide-y divide-border sm:flex sm:divide-x sm:divide-y-0">
+          <div className="flex items-center gap-2 py-2.5 sm:py-0 sm:pr-6">
+            <dt className="text-muted">
+              <Phone aria-hidden className="size-4" />
+              <span className="sr-only">Phone</span>
+            </dt>
+            <dd>
+              <a href={`tel:${resume.phone.replace(/\D/g, '')}`} className={contactTextLinkClass}>
+                {resume.phone}
+              </a>
+            </dd>
+          </div>
+          <div className="flex items-center gap-2 py-2.5 sm:px-6 sm:py-0">
+            <dt className="text-muted">
+              <Envelope aria-hidden className="size-4" />
+              <span className="sr-only">Email</span>
+            </dt>
+            <dd>
+              <a href={`mailto:${resume.email}`} className={contactTextLinkClass}>
+                {resume.email}
+              </a>
+            </dd>
+          </div>
+        </dl>
+        <ul className="flex gap-1.5 border-t border-border py-2.5 sm:flex-1 sm:justify-end sm:border-t-0 sm:border-l sm:py-0 sm:pl-6">
+          <li>
+            <a
+              href={resume.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+              className={contactLinkClass}
+            >
+              <GithubFill aria-hidden className="size-3.5 sm:size-4" />
+            </a>
+          </li>
+          <li>
+            <a
+              href={resume.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              title="LinkedIn"
+              className={contactLinkClass}
+            >
+              <LinkedinFill aria-hidden className="size-3.5 sm:size-4" />
+            </a>
+          </li>
+          <li>
+            <a
+              href={resume.pdf}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="이력서 PDF (새 창)"
+              title="이력서 PDF"
+              className={contactLinkClass}
+            >
+              <File aria-hidden className="size-3.5 sm:size-4" />
+            </a>
+          </li>
+        </ul>
+      </div>
 
       <section className="mt-14">
         <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>경력</h2>
@@ -119,17 +119,19 @@ export default function ResumePage() {
               key={`${experience.company}-${experience.period}`}
               className="grid grid-cols-[150px_minmax(0,1fr)] gap-x-8 gap-y-2 border-b border-border py-6 last:border-b-0 max-sm:grid-cols-1"
             >
-              <p className="pt-0.5 text-[0.8125rem] text-muted tabular-nums sm:text-sm">
+              <p className="pt-0.5 text-sm text-muted tabular-nums sm:text-[0.9375rem]">
                 {start} ~
                 <br className="max-sm:hidden" />{' '}
                 {end === CURRENT_LABEL ? (
-                  <span className="text-[0.6875rem] font-semibold text-accent sm:text-xs">{end}</span>
+                  <span className="text-xs font-semibold text-accent sm:text-[0.8125rem]">
+                    {end}
+                  </span>
                 ) : (
                   end
                 )}
               </p>
               <div>
-                <h3 className="flex items-center gap-2 text-base leading-snug font-semibold sm:text-lg">
+                <h3 className="flex items-center gap-2 text-[1.0625rem] leading-snug font-semibold sm:text-lg">
                   {experience.logo && (
                     // 심볼 색이 다크 모드 배경에 묻히지 않도록 항상 흰 바탕 위에 표시
                     <span className="flex size-5.5 shrink-0 items-center justify-center rounded-[5px] border border-border/50 bg-white">
@@ -138,10 +140,10 @@ export default function ResumePage() {
                   )}
                   {experience.company}
                 </h3>
-                <p className="mt-1 text-[0.8125rem] text-muted sm:text-sm">
+                <p className="mt-1 text-sm text-muted sm:text-[0.9375rem]">
                   {experience.team} · {experience.role}
                 </p>
-                <div className="mt-2">
+                <div className="mt-4 flex flex-col gap-3">
                   {experience.highlights.map((highlight) => (
                     <HighlightAccordion
                       key={getHighlightKey(experience, highlight)}
@@ -157,14 +159,23 @@ export default function ResumePage() {
 
       <section className="mt-14">
         <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>기술</h2>
-        <dl className="grid grid-cols-[150px_minmax(0,1fr)] gap-x-8 gap-y-2.5 pt-4 max-sm:grid-cols-1 max-sm:gap-y-0.5">
+        {/* 카테고리별 카드를 2열로 배치, 좁은 화면에서는 1열 */}
+        <div className="grid grid-cols-2 gap-3 pt-4 max-sm:grid-cols-1">
           {resume.skills.map((group) => (
-            <div key={group.category} className="contents">
-              <dt className="text-sm font-semibold max-sm:mt-2">{group.category}</dt>
-              <dd className="text-sm text-muted">{group.items.join(' · ')}</dd>
+            <div key={group.category} className="rounded-lg border border-border p-4">
+              <h3 className="text-xs font-semibold tracking-[0.08em] text-muted uppercase">
+                {group.category}
+              </h3>
+              <ul className="mt-2.5 flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <li key={item} className="rounded-md border border-border px-2 py-0.5 text-sm">
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
-        </dl>
+        </div>
       </section>
 
       <section className="mt-14">
@@ -181,7 +192,7 @@ export default function ResumePage() {
                   {certification.issuer}
                 </span>
               </span>
-              <span className="text-sm text-muted tabular-nums">{certification.date}</span>
+              <span className="text-[0.9375rem] text-muted tabular-nums">{certification.date}</span>
             </li>
           ))}
         </ul>
@@ -201,7 +212,7 @@ export default function ResumePage() {
                   {education.major} · 학점 {education.gpa}
                 </span>
               </span>
-              <span className="text-sm text-muted tabular-nums">{education.period}</span>
+              <span className="text-[0.9375rem] text-muted tabular-nums">{education.period}</span>
             </li>
           ))}
         </ul>
