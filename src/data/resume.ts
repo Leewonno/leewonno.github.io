@@ -1,13 +1,6 @@
-// 접힌 상태에서도 보이는 개선 수치 (예: 80KB → 20KB)
-export type Metric = {
-  before: string
-  after: string
-}
-
 export type Highlight = {
   title: string
   description: string
-  metric?: Metric
 }
 
 export type Experience = {
@@ -91,10 +84,9 @@ export const resume: Resume = {
       period: '2025.12 ~ 2026.03',
       highlights: [
         {
-          title: '단일 HTML을 화면별로 분리해 초기 HTML 크기 75% 감소',
+          title: '단일 HTML을 화면별로 분리해 초기 HTML 크기 75% 감소 (80KB → 20KB)',
           description:
             '7개 상세 화면이 하나의 HTML에 묶여 페이지 진입 시 열리지 않은 화면까지 로드 → 화면별로 코드를 분리해 클릭 시점에 fetch로 불러오도록 변경 후, 불러온 화면은 캐싱해 재요청 방지 → 초기 HTML 80KB에서 20KB로 75% 감소',
-          metric: { before: '80KB', after: '20KB' },
         },
       ],
     },
@@ -106,10 +98,9 @@ export const resume: Resume = {
       period: '2024.04 ~ 2025.11',
       highlights: [
         {
-          title: '1만 건 이상의 데이터가 있는 페이지의 로딩 시간 30초 → 1초',
+          title: '1만 건 이상의 데이터가 있는 페이지의 로딩 시간 단축 (30초 → 1초)',
           description:
             'Django 서버에서 1만 건 이상의 행을 HTML 테이블로 렌더링해 화면 표시까지 30초 이상 소요 → 데이터를 JSON으로 전달하고, 가상 스크롤을 지원하는 Tabulator로 브라우저에서 보이는 행만 렌더링하도록 변경해 페이지 로딩 시간 1초로 단축',
-          metric: { before: '30초', after: '1초' },
         },
         {
           title: 'ERP 핵심 비즈니스 로직 설계',

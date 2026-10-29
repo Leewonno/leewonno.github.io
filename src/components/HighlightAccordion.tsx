@@ -20,17 +20,8 @@ export default function HighlightAccordion({ highlight }: HighlightAccordionProp
         onClick={() => setIsOpen((open) => !open)}
         className="group flex w-full cursor-pointer items-start gap-3 text-left"
       >
-        {/* 좁은 화면에서는 지표를 제목 아래 줄로 내림 */}
-        <span className="flex flex-1 items-start gap-3 max-sm:flex-col max-sm:gap-0.5">
-          <span className="flex-1 text-base font-semibold transition-colors duration-300 group-hover:text-accent motion-reduce:transition-none sm:text-[1.0625rem]">
-            {highlight.title}
-          </span>
-          {highlight.metric && (
-            <span className="shrink-0 text-[0.8125rem] text-muted tabular-nums sm:pt-0.5 sm:text-sm">
-              {highlight.metric.before} →{' '}
-              <span className="font-semibold text-foreground">{highlight.metric.after}</span>
-            </span>
-          )}
+        <span className="flex-1 text-base font-semibold transition-colors duration-300 group-hover:text-accent motion-reduce:transition-none sm:text-[1.0625rem]">
+          {highlight.title}
         </span>
         <ChevronDown
           width={16}
