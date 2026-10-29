@@ -22,9 +22,11 @@ export default function HighlightAccordion({ highlight }: HighlightAccordionProp
       >
         {/* 좁은 화면에서는 지표를 제목 아래 줄로 내림 */}
         <span className="flex flex-1 items-start gap-3 max-sm:flex-col max-sm:gap-0.5">
-          <span className="flex-1 text-[0.9375rem] font-semibold sm:text-base">{highlight.title}</span>
+          <span className="flex-1 text-base font-semibold sm:text-[1.0625rem]">
+            {highlight.title}
+          </span>
           {highlight.metric && (
-            <span className="shrink-0 text-xs text-muted tabular-nums sm:pt-0.5 sm:text-[0.8125rem]">
+            <span className="shrink-0 text-[0.8125rem] text-muted tabular-nums sm:pt-0.5 sm:text-sm">
               {highlight.metric.before} →{' '}
               <span className="font-semibold text-foreground">{highlight.metric.after}</span>
             </span>
@@ -43,7 +45,9 @@ export default function HighlightAccordion({ highlight }: HighlightAccordionProp
         className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
       >
         <div className="overflow-hidden">
-          <p className="pr-7 pb-3 text-sm text-muted sm:text-[0.9375rem]">{highlight.description}</p>
+          <p className="pr-7 pb-3 text-[0.9375rem] text-muted sm:text-base">
+            {highlight.description}
+          </p>
         </div>
       </div>
     </div>
