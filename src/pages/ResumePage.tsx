@@ -1,6 +1,7 @@
 import ChevronDown from '~icons/akar-icons/chevron-down'
-import Envelope from '~icons/akar-icons/envelope'
+import File from '~icons/akar-icons/file'
 import GithubFill from '~icons/akar-icons/github-fill'
+import LinkedinFill from '~icons/akar-icons/linkedin-fill'
 import { resume, type Experience, type Highlight } from '@/data/resume'
 
 const CURRENT_LABEL = '재직 중'
@@ -18,32 +19,27 @@ const sectionTitleClass =
   'text-[0.8125rem] font-semibold tracking-[0.08em] text-muted uppercase'
 
 const contactLinkClass =
-  'inline-flex size-8 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-9'
+  'inline-flex size-7 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-8'
+
+const contactTextLinkClass =
+  'tabular-nums transition-colors duration-300 hover:text-accent motion-reduce:transition-none'
 
 export default function ResumePage() {
   return (
     <>
       <title>Resume</title>
-      <header className="flex items-center gap-4 sm:gap-6">
-        <img
-          src={resume.avatar}
-          alt=""
-          className="size-20 shrink-0 rounded-full border border-border bg-code object-cover object-top sm:size-28"
-        />
-        <div className="min-w-0">
+      <header className="flex flex-wrap items-center gap-4 sm:flex-nowrap sm:gap-6">
+        <div className="size-20 shrink-0 overflow-hidden rounded-full border border-border bg-code sm:size-32">
+          <img
+            src={resume.avatar}
+            alt=""
+            className="size-full origin-[50%_40%] scale-110 object-cover object-top"
+          />
+        </div>
+        <div className="min-w-0 flex-1">
           <h1 className="text-2xl leading-snug font-bold sm:text-[1.75rem]">{resume.name}</h1>
           <p className="mt-0.5 text-muted">{resume.headline}</p>
-          <ul className="mt-2.5 flex gap-2">
-            <li>
-              <a
-                href={`mailto:${resume.email}`}
-                aria-label={`이메일 ${resume.email}`}
-                title={resume.email}
-                className={contactLinkClass}
-              >
-                <Envelope aria-hidden className="size-4 sm:size-4.5" />
-              </a>
-            </li>
+          <ul className="mt-2.5 flex gap-1.5">
             <li>
               <a
                 href={resume.github}
@@ -53,11 +49,53 @@ export default function ResumePage() {
                 title="GitHub"
                 className={contactLinkClass}
               >
-                <GithubFill aria-hidden className="size-4 sm:size-4.5" />
+                <GithubFill aria-hidden className="size-3.5 sm:size-4" />
+              </a>
+            </li>
+            <li>
+              <a
+                href={resume.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                title="LinkedIn"
+                className={contactLinkClass}
+              >
+                <LinkedinFill aria-hidden className="size-3.5 sm:size-4" />
+              </a>
+            </li>
+            <li>
+              <a
+                href={resume.pdf}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="이력서 PDF (새 창)"
+                title="이력서 PDF"
+                className={contactLinkClass}
+              >
+                <File aria-hidden className="size-3.5 sm:size-4" />
               </a>
             </li>
           </ul>
         </div>
+        {/* 좁은 화면에서는 헤더 아래 줄로 내려 왼쪽 정렬 */}
+        <dl className="grid grid-cols-[auto_auto] justify-start gap-x-3 gap-y-1 text-sm max-sm:w-full sm:self-end sm:border-l sm:border-border sm:pl-5">
+          <dt className="text-muted">Phone</dt>
+          <dd>
+            <a
+              href={`tel:${resume.phone.replace(/\D/g, '')}`}
+              className={contactTextLinkClass}
+            >
+              {resume.phone}
+            </a>
+          </dd>
+          <dt className="text-muted">Email</dt>
+          <dd>
+            <a href={`mailto:${resume.email}`} className={contactTextLinkClass}>
+              {resume.email}
+            </a>
+          </dd>
+        </dl>
       </header>
 
       <section className="mt-14">

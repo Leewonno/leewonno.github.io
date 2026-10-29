@@ -42,7 +42,10 @@ export type Resume = {
   name: string
   headline: string
   email: string
+  phone: string
   github: string
+  linkedin: string
+  pdf: string
   avatar: string
   experiences: readonly Experience[]
   certifications: readonly Certification[]
@@ -54,7 +57,11 @@ export const resume: Resume = {
   name: '이원노',
   headline: 'Frontend Developer',
   email: 'dldnjssh123@naver.com',
+  phone: '010-0000-0000',
   github: 'https://github.com/Leewonno',
+  linkedin: 'https://www.linkedin.com/in/leewonno/',
+  // PDF 파일은 수시로 바뀌므로 임시로 현재 이력서 페이지를 새 창에서 연다
+  pdf: '/resume',
   avatar: '/resume/profile.jpg',
   experiences: [
     {
