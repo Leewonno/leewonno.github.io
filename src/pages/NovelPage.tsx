@@ -17,7 +17,7 @@ export default function NovelPage() {
   return (
     <>
       <title>Novel</title>
-      <h1 className="my-4 text-2xl font-bold sm:my-5 sm:text-3xl">Novel</h1>
+      <h1 className="my-4 text-xl font-bold uppercase sm:my-5 sm:text-2xl">Novel</h1>
       <p className="mb-6 text-sm text-muted sm:text-base">직접 써서 연재했던 소설이에요.</p>
       <ul className="grid grid-cols-1 gap-y-8 sm:grid-cols-3 sm:gap-x-5">
         {novels.map((novel) => (

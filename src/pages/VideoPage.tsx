@@ -156,7 +156,7 @@ export default function VideoPage() {
   return (
     <>
       <title>Video</title>
-      <h1 className="my-4 text-2xl font-bold sm:my-5 sm:text-3xl">Video</h1>
+      <h1 className="my-4 text-xl font-bold uppercase sm:my-5 sm:text-2xl">Video</h1>
       <p className="mb-6 text-sm text-muted sm:text-base">직접 운영했던 좋아하는 아이돌의 팬채널이에요.</p>
       <ChannelHeader />
       <VideoSection title="영상" items={videos} pageSize={VIDEO_PAGE_SIZE} variant="video" />

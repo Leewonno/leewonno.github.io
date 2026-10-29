@@ -7,7 +7,7 @@ export default function PlaygroundPage() {
   return (
     <>
       <title>Playground</title>
-      <h1 className="my-4 text-2xl font-bold sm:my-5 sm:text-3xl">Playground</h1>
+      <h1 className="my-4 text-xl font-bold uppercase sm:my-5 sm:text-2xl">Playground</h1>
       <p className="mb-6 text-sm text-muted sm:text-base">직접 만들어서 배포한 개인 프로젝트예요.</p>
       <ul>
         {projects.map((project) => (
