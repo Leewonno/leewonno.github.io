@@ -1,5 +1,5 @@
-import YoutubeFill from '~icons/akar-icons/youtube-fill'
 import HomeCard from '@/components/HomeCard'
+import YoutubeLogo from '@/components/YoutubeLogo'
 import { channel, shorts, videos } from '@/data/video'
 
 const VIDEO_PREVIEW_COUNT = 3
@@ -54,7 +54,7 @@ export default function VideoPreviewCard() {
         <div className="min-w-0">
           <p className="flex items-center gap-1 text-sm font-bold">
             {channel.name}
-            <YoutubeFill width={14} height={14} className="shrink-0 text-[#ff0033]" aria-hidden />
+            <YoutubeLogo width={14} height={10} className="shrink-0" aria-hidden />
           </p>
           <p className="text-xs text-muted">
             구독자 {channelStatFormatter.format(channel.subscribers)}명 · 총 조회수{' '}
