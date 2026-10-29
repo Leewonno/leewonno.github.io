@@ -159,14 +159,23 @@ export default function ResumePage() {
 
       <section className="mt-14">
         <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>기술</h2>
-        <dl className="grid grid-cols-[150px_minmax(0,1fr)] gap-x-8 gap-y-2.5 pt-4 max-sm:grid-cols-1 max-sm:gap-y-0.5">
+        {/* 카테고리별 카드를 2열로 배치, 좁은 화면에서는 1열 */}
+        <div className="grid grid-cols-2 gap-3 pt-4 max-sm:grid-cols-1">
           {resume.skills.map((group) => (
-            <div key={group.category} className="contents">
-              <dt className="text-[0.9375rem] font-semibold max-sm:mt-2">{group.category}</dt>
-              <dd className="text-[0.9375rem] text-muted">{group.items.join(' · ')}</dd>
+            <div key={group.category} className="rounded-lg border border-border p-4">
+              <h3 className="text-xs font-semibold tracking-[0.08em] text-muted uppercase">
+                {group.category}
+              </h3>
+              <ul className="mt-2.5 flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <li key={item} className="rounded-md border border-border px-2 py-0.5 text-sm">
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
-        </dl>
+        </div>
       </section>
 
       <section className="mt-14">
