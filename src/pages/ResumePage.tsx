@@ -45,7 +45,7 @@ export default function ResumePage() {
       </header>
 
       {/* 좁은 화면에서는 전화·이메일·링크를 가로선으로 나눈 세 줄로 쌓음 */}
-      <div className="mt-8 text-[0.9375rem] sm:mt-10 sm:flex sm:items-center sm:py-3">
+      <div className="mt-4 text-[0.9375rem] sm:mt-5 sm:flex sm:items-center sm:py-3">
         <dl className="divide-y divide-border sm:flex sm:divide-x sm:divide-y-0">
           <div className="flex items-center gap-2 py-2.5 sm:py-0 sm:pr-6">
             <dt className="text-muted">
