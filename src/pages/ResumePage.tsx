@@ -143,7 +143,7 @@ export default function ResumePage() {
                 <p className="mt-1 text-sm text-muted sm:text-[0.9375rem]">
                   {experience.team} · {experience.role}
                 </p>
-                <div className="mt-2">
+                <div className="mt-4 flex flex-col gap-3">
                   {experience.highlights.map((highlight) => (
                     <HighlightAccordion
                       key={getHighlightKey(experience, highlight)}
