@@ -1,12 +1,6 @@
 import BookOpen from '~icons/akar-icons/book-open'
 import Trophy from '~icons/akar-icons/trophy'
-import { novels, type NovelStatus } from '@/data/novel'
-
-const STATUS_LABEL: Record<NovelStatus, string> = {
-  ongoing: '연재 중',
-  completed: '완결',
-  paused: '연재 중단',
-}
+import { NOVEL_STATUS_LABEL, novels } from '@/data/novel'
 
 // '2023-03-10' → '2023.03'
 function formatMonth(value: string) {
@@ -60,7 +54,7 @@ export default function NovelPage() {
                 ) : (
                   ' – '
                 )}
-                {STATUS_LABEL[novel.status]}
+                {NOVEL_STATUS_LABEL[novel.status]}
               </p>
               {novel.award && (
                 <p className="mt-1 flex items-start gap-1 text-xs font-semibold text-accent">

@@ -57,7 +57,7 @@ export const resume: Resume = {
   name: '이원노',
   headline: 'Frontend Developer',
   email: 'dldnjssh123@naver.com',
-  phone: '010-0000-0000',
+  phone: '010-5253-4143',
   github: 'https://github.com/Leewonno',
   linkedin: 'https://www.linkedin.com/in/leewonno/',
   // PDF 파일은 수시로 바뀌므로 임시로 현재 이력서 페이지를 새 창에서 연다

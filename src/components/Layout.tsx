@@ -34,8 +34,13 @@ export default function Layout() {
   return (
     <div className="mx-auto flex min-h-screen max-w-content flex-col px-5">
       <header className="flex flex-wrap items-center justify-between gap-x-4 py-6">
-        <NavLink to="/" className="text-lg font-bold" onClick={closeMenu}>
-          Leewonno
+        <NavLink to="/" className="flex items-center" onClick={closeMenu}>
+          {/* 흰 배경 PNG라 라이트에선 multiply, 다크에선 반전 후 screen으로 배경을 지움 */}
+          <img
+            src="/logo.png"
+            alt="Leewonno"
+            className="h-6 w-auto mix-blend-multiply dark:mix-blend-screen dark:invert"
+          />
         </NavLink>
         <button
           type="button"
@@ -53,7 +58,7 @@ export default function Layout() {
         </button>
         <nav
           id="site-nav"
-          className={`${isMenuOpen ? 'flex' : 'hidden'} mt-4 w-full flex-col border-t border-border pt-2 text-muted sm:mt-0 sm:flex sm:w-auto sm:flex-row sm:gap-5 sm:border-t-0 sm:pt-0`}
+          className={`${isMenuOpen ? 'flex' : 'hidden'} mt-4 w-full flex-col border-t border-border pt-2 text-sm text-muted uppercase sm:mt-0 sm:flex sm:w-auto sm:flex-row sm:gap-5 sm:border-t-0 sm:pt-0`}
         >
           {NAV_ITEMS.map(({ to, label }) => (
             <NavLink
@@ -61,7 +66,7 @@ export default function Layout() {
               to={to}
               onClick={closeMenu}
               className={({ isActive }) =>
-                `py-2 sm:py-0 ${isActive ? 'text-foreground' : 'hover:text-foreground'}`
+                `py-2 sm:py-0 ${isActive ? 'font-semibold text-accent' : 'hover:text-foreground'}`
               }
             >
               {label}

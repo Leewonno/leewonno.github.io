@@ -1,8 +1,7 @@
 import { lazy, Suspense } from 'react'
-import Trophy from '~icons/akar-icons/trophy'
 import BrowserFrame from '@/components/BrowserFrame'
 import HomeCard, { homeCardClass } from '@/components/HomeCard'
-import { novels } from '@/data/novel'
+import { NOVEL_STATUS_LABEL, novels } from '@/data/novel'
 import { projects } from '@/data/playground'
 import { resume } from '@/data/resume'
 import { formatDate, getAllPosts } from '@/lib/posts'
@@ -17,15 +16,10 @@ function BlogCard() {
     <HomeCard to="/blog" label="Blog" className="sm:col-span-4">
       {latestPost ? (
         <>
-          <h3 className="mt-auto text-2xl leading-snug font-bold">{latestPost.title}</h3>
-          {latestPost.description && <p className="mt-1.5 text-muted">{latestPost.description}</p>}
-          <p className="mt-3.5 flex flex-wrap items-center gap-1.5 text-[0.8125rem] text-muted">
+          <h3 className="mt-auto text-[1.375rem] leading-snug font-bold">{latestPost.title}</h3>
+          {latestPost.description && <p className="mt-1.5 text-[0.9375rem] text-muted">{latestPost.description}</p>}
+          <p className="mt-3.5 text-[0.8125rem] text-muted">
             <time dateTime={latestPost.date.toISOString()}>{formatDate(latestPost.date)}</time>
-            {latestPost.tags.map((tag) => (
-              <span key={tag} className="rounded-full border border-border px-2.5 text-xs leading-5">
-                {tag}
-              </span>
-            ))}
           </p>
         </>
       ) : (
@@ -36,33 +30,27 @@ function BlogCard() {
 }
 
 function ResumeCard() {
-  const [current, ...previous] = resume.experiences
+  const [current] = resume.experiences
 
   return (
     <HomeCard to="/resume" label="Resume" className="sm:col-span-2">
-      <img
-        src={resume.avatar}
-        alt=""
-        width={64}
-        height={64}
-        className="size-16 rounded-full border border-border bg-code object-cover object-top"
-      />
+      <div className="relative">
+        <img
+          src={resume.avatar}
+          alt=""
+          className="block h-27 w-full max-sm:min-h-52 rounded-[0.875rem] bg-code object-cover object-[50%_18%]"
+        />
+        {current?.logo && (
+          // 사진 모서리에 붙인 회사 심볼 배지
+          <span className="absolute -right-1.5 -bottom-2.5 size-8.5 rounded-[0.625rem] border border-border bg-background p-1.5">
+            <img src={current.logo} alt="" width={22} height={22} className="block size-full" />
+          </span>
+        )}
+      </div>
+      <p className="mt-auto pt-3.5 text-lg font-extrabold">{resume.name}</p>
       {current && (
-        <>
-          <p className="mt-auto flex items-center gap-2 pt-3.5 font-bold">
-            {current.logo && (
-              <img src={current.logo} alt="" width={22} height={22} className="size-5.5 rounded-md" />
-            )}
-            {current.company}
-          </p>
-          <p className="text-[0.8125rem] text-muted">
-            {current.team} · <span className="whitespace-nowrap">{current.period}</span>
-          </p>
-        </>
-      )}
-      {previous.length > 0 && (
-        <p className="text-[0.8125rem] text-muted">
-          이전 {previous.map((experience) => experience.company).join(' · ')}
+        <p className="mt-0.5 text-[0.8125rem] text-muted">
+          {current.company} · {current.role}
         </p>
       )}
     </HomeCard>
@@ -87,42 +75,39 @@ function PlaygroundCard() {
   )
 }
 
-function NovelCard() {
-  const award = novels.find((novel) => novel.award)?.award
-  const platforms = [...new Set(novels.map((novel) => novel.platform))].join(', ')
+// '2023-03-10' → '2023.03.10'
+function formatDay(value: string) {
+  return value.replaceAll('-', '.')
+}
 
+function NovelCard() {
   return (
     <HomeCard to="/novel" label="Novel" className="sm:col-span-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-        <ul className="flex shrink-0 gap-3">
-          {novels.map((novel) => (
-            <li key={novel.url}>
-              <img
-                src={novel.thumbnail}
-                alt=""
-                width={720}
-                height={1030}
-                loading="lazy"
-                className="block aspect-720/1030 w-20 rounded-md bg-code object-cover shadow-[0_4px_12px_rgb(31_35_40/0.12)] sm:w-24"
-              />
-            </li>
-          ))}
-        </ul>
-        <div className="min-w-0">
-          <h3 className="text-[1.375rem] leading-snug font-bold">
-            직접 쓰고 연재한 소설 {novels.length}편
-          </h3>
-          <p className="mt-0.5 text-sm text-muted">
-            {novels.map((novel) => novel.title).join(' · ')} — {platforms}
-          </p>
-          {award && (
-            <p className="mt-2 flex items-start gap-1 text-xs font-semibold text-accent">
-              <Trophy width={12} height={12} className="mt-[0.1875rem] shrink-0" aria-hidden />
-              {award}
-            </p>
-          )}
-        </div>
-      </div>
+      <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        {novels.map((novel) => (
+          <li key={novel.url} className="flex gap-3.5">
+            <img
+              src={novel.thumbnail}
+              alt=""
+              width={720}
+              height={1030}
+              loading="lazy"
+              className="block aspect-720/1030 w-19 shrink-0 self-start rounded-md bg-code object-cover shadow-[0_4px_12px_rgb(31_35_40/0.12)]"
+            />
+            <div className="min-w-0">
+              <h3 className="text-[1.0625rem] font-bold">{novel.title}</h3>
+              <p className="mt-0.5 text-[0.8125rem] text-muted">{novel.platform}</p>
+              <p className="text-[0.8125rem] text-muted">
+                <time dateTime={novel.startedAt}>{formatDay(novel.startedAt)}</time> ~{' '}
+                {novel.endedAt && <time dateTime={novel.endedAt}>{formatDay(novel.endedAt)}</time>}
+              </p>
+              <span className="mt-2 inline-block rounded-full border border-border px-2.25 text-xs leading-5 text-muted">
+                {NOVEL_STATUS_LABEL[novel.status]}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
     </HomeCard>
   )
 }
