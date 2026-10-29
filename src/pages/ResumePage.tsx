@@ -41,70 +41,74 @@ export default function ResumePage() {
         <div className="min-w-0 flex-1">
           <h1 className="text-2xl leading-snug font-bold sm:text-[1.75rem]">{resume.name}</h1>
           <p className="mt-0.5 text-muted">{resume.headline}</p>
-          <dl className="mt-2 flex flex-col items-center gap-0.5 text-[0.9375rem] sm:flex-row sm:flex-wrap sm:gap-x-4 sm:gap-y-0.5">
-            <div className="flex items-center gap-1.5">
-              <dt className="text-muted">
-                <Phone aria-hidden className="size-4" />
-                <span className="sr-only">Phone</span>
-              </dt>
-              <dd>
-                <a href={`tel:${resume.phone.replace(/\D/g, '')}`} className={contactTextLinkClass}>
-                  {resume.phone}
-                </a>
-              </dd>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <dt className="text-muted">
-                <Envelope aria-hidden className="size-4" />
-                <span className="sr-only">Email</span>
-              </dt>
-              <dd>
-                <a href={`mailto:${resume.email}`} className={contactTextLinkClass}>
-                  {resume.email}
-                </a>
-              </dd>
-            </div>
-          </dl>
-          <ul className="mt-3 flex justify-center gap-1.5 sm:justify-start">
-            <li>
-              <a
-                href={resume.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                title="GitHub"
-                className={contactLinkClass}
-              >
-                <GithubFill aria-hidden className="size-3.5 sm:size-4" />
-              </a>
-            </li>
-            <li>
-              <a
-                href={resume.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                title="LinkedIn"
-                className={contactLinkClass}
-              >
-                <LinkedinFill aria-hidden className="size-3.5 sm:size-4" />
-              </a>
-            </li>
-            <li>
-              <a
-                href={resume.pdf}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="이력서 PDF (새 창)"
-                title="이력서 PDF"
-                className={contactLinkClass}
-              >
-                <File aria-hidden className="size-3.5 sm:size-4" />
-              </a>
-            </li>
-          </ul>
         </div>
       </header>
+
+      {/* 좁은 화면에서는 전화·이메일·링크를 가로선으로 나눈 세 줄로 쌓음 */}
+      <div className="mt-8 border-y border-border text-[0.9375rem] sm:mt-10 sm:flex sm:items-center sm:py-3">
+        <dl className="divide-y divide-border sm:flex sm:divide-x sm:divide-y-0">
+          <div className="flex items-center gap-2 py-2.5 sm:py-0 sm:pr-6">
+            <dt className="text-muted">
+              <Phone aria-hidden className="size-4" />
+              <span className="sr-only">Phone</span>
+            </dt>
+            <dd>
+              <a href={`tel:${resume.phone.replace(/\D/g, '')}`} className={contactTextLinkClass}>
+                {resume.phone}
+              </a>
+            </dd>
+          </div>
+          <div className="flex items-center gap-2 py-2.5 sm:px-6 sm:py-0">
+            <dt className="text-muted">
+              <Envelope aria-hidden className="size-4" />
+              <span className="sr-only">Email</span>
+            </dt>
+            <dd>
+              <a href={`mailto:${resume.email}`} className={contactTextLinkClass}>
+                {resume.email}
+              </a>
+            </dd>
+          </div>
+        </dl>
+        <ul className="flex gap-1.5 border-t border-border py-2.5 sm:flex-1 sm:justify-end sm:border-t-0 sm:border-l sm:py-0 sm:pl-6">
+          <li>
+            <a
+              href={resume.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+              className={contactLinkClass}
+            >
+              <GithubFill aria-hidden className="size-3.5 sm:size-4" />
+            </a>
+          </li>
+          <li>
+            <a
+              href={resume.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              title="LinkedIn"
+              className={contactLinkClass}
+            >
+              <LinkedinFill aria-hidden className="size-3.5 sm:size-4" />
+            </a>
+          </li>
+          <li>
+            <a
+              href={resume.pdf}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="이력서 PDF (새 창)"
+              title="이력서 PDF"
+              className={contactLinkClass}
+            >
+              <File aria-hidden className="size-3.5 sm:size-4" />
+            </a>
+          </li>
+        </ul>
+      </div>
 
       <section className="mt-14">
         <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>경력</h2>
