@@ -70,7 +70,7 @@ export default function ResumePage() {
             </dd>
           </div>
         </dl>
-        <ul className="flex justify-center gap-1.5 border-t border-border py-2 sm:flex-1 sm:justify-end sm:border-t-0 sm:py-0 sm:pl-6">
+        <ul className="flex justify-center gap-1.5 border-t border-border py-2 sm:justify-start sm:border-t-0 sm:py-0 sm:pl-6">
           <li>
             <a
               href={resume.github}
