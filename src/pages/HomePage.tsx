@@ -21,7 +21,7 @@ function BlogCard() {
     >
       {latestPost ? (
         <>
-          <h3 className="mt-auto text-[1.375rem] leading-snug font-bold">{latestPost.title}</h3>
+          <h3 className="mt-auto text-[1.375rem] leading-snug font-semibold">{latestPost.title}</h3>
           {latestPost.description && <p className="mt-1.5 text-[0.9375rem] text-muted">{latestPost.description}</p>}
           <p className="mt-3.5 text-[0.8125rem] text-muted">
             <time dateTime={latestPost.date.toISOString()}>{formatDate(latestPost.date)}</time>
@@ -52,12 +52,8 @@ function ResumeCard() {
           </span>
         )}
       </div>
-      <p className="mt-auto pt-3.5 text-lg font-extrabold">{resume.name}</p>
-      {current && (
-        <p className="mt-0.5 text-[0.8125rem] text-muted">
-          {current.company} · {current.role}
-        </p>
-      )}
+      <p className="mt-auto pt-3.5 text-lg font-semibold">{resume.name}</p>
+      {current && <p className="mt-0.5 text-[0.8125rem] text-muted">{current.role}</p>}
     </HomeCard>
   )
 }
@@ -71,7 +67,7 @@ function PlaygroundCard() {
       <div className="mt-auto overflow-hidden rounded-xl border border-border shadow-[0_8px_24px_rgb(31_35_40/0.1)]">
         <BrowserFrame url={featured.url} title={featured.title} screenshot={featured.screenshot} />
       </div>
-      <h3 className="mt-3 font-bold">
+      <h3 className="mt-3 font-semibold">
         {featured.title}
         {rest.length > 0 && ` 외 ${rest.length}개`}
       </h3>
@@ -100,7 +96,7 @@ function NovelCard() {
               className="block aspect-720/1030 w-19 shrink-0 self-start rounded-md bg-code object-cover shadow-[0_4px_12px_rgb(31_35_40/0.12)]"
             />
             <div className="min-w-0">
-              <h3 className="text-[1.0625rem] font-bold">{novel.title}</h3>
+              <h3 className="text-[1.0625rem] font-semibold">{novel.title}</h3>
               <p className="mt-0.5 text-[0.8125rem] text-muted">{novel.platform}</p>
               <p className="text-[0.8125rem] text-muted">
                 <time dateTime={novel.startedAt}>{formatDay(novel.startedAt)}</time> ~{' '}

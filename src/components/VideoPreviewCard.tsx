@@ -52,7 +52,7 @@ export default function VideoPreviewCard() {
           className="size-7 shrink-0 rounded-full object-cover"
         />
         <div className="min-w-0">
-          <p className="flex items-center gap-1 text-sm font-bold">
+          <p className="flex items-center gap-1 text-sm font-semibold">
             {channel.name}
             <YoutubeLogo width={14} height={10} className="shrink-0" aria-hidden />
           </p>
