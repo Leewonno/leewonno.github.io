@@ -2,7 +2,7 @@ import { useState } from 'react'
 import ChevronDown from '~icons/akar-icons/chevron-down'
 import ChevronRight from '~icons/akar-icons/chevron-right'
 import Play from '~icons/akar-icons/triangle-right-fill'
-import YoutubeFill from '~icons/akar-icons/youtube-fill'
+import YoutubeLogo from '@/components/YoutubeLogo'
 import { channel, shorts, videos, type Video } from '@/data/video'
 import { formatDate } from '@/lib/posts'
 
@@ -29,7 +29,7 @@ function ChannelHeader() {
       <div className="min-w-0 flex-1">
         <p className="flex items-center gap-1.5 font-bold">
           {channel.name}
-          <YoutubeFill width={16} height={16} className="shrink-0 text-[#ff0033]" aria-hidden />
+          <YoutubeLogo width={16} height={11} className="shrink-0" aria-hidden />
         </p>
         {/* 항목마다 앞에 '·' 를 붙이고 왼쪽으로 1em 당겨 잘라내서, 줄 맨 앞에 오는 '·' 는 보이지 않게 함 */}
         <div className="overflow-hidden text-[0.8125rem] text-muted">
