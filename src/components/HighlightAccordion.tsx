@@ -20,7 +20,7 @@ export default function HighlightAccordion({ highlight }: HighlightAccordionProp
         onClick={() => setIsOpen((open) => !open)}
         className="group flex w-full cursor-pointer items-start gap-3 text-left"
       >
-        <span className="flex-1 text-base font-semibold transition-colors duration-300 group-hover:text-accent motion-reduce:transition-none sm:text-[1.0625rem]">
+        <span className="flex-1 text-base font-medium transition-colors duration-300 group-hover:text-accent motion-reduce:transition-none sm:text-[1.0625rem]">
           {highlight.title}
         </span>
         <ChevronDown

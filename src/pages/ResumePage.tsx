@@ -39,7 +39,7 @@ export default function ResumePage() {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <h1 className="text-2xl leading-snug font-bold sm:text-[1.75rem]">{resume.name}</h1>
+          <h1 className="text-2xl leading-snug font-semibold sm:text-[1.75rem]">{resume.name}</h1>
           <p className="mt-0.5 text-muted">{resume.headline}</p>
         </div>
       </header>

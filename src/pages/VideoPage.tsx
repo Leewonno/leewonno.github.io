@@ -27,7 +27,7 @@ function ChannelHeader() {
     >
       <img src={channel.avatar} alt="" width={56} height={56} className="size-14 shrink-0 rounded-full object-cover" />
       <div className="min-w-0 flex-1">
-        <p className="flex items-center gap-1.5 font-bold">
+        <p className="flex items-center gap-1.5 font-semibold">
           {channel.name}
           <YoutubeLogo width={16} height={11} className="shrink-0" aria-hidden />
         </p>
@@ -75,7 +75,7 @@ function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
 
   return (
     <section className="mt-8">
-      <h2 className="my-4 text-xl font-bold sm:my-5 sm:text-2xl">{title}</h2>
+      <h2 className="my-4 text-xl font-semibold sm:my-5 sm:text-2xl">{title}</h2>
       <ul
         className={
           isShort
@@ -156,7 +156,7 @@ export default function VideoPage() {
   return (
     <>
       <title>Video</title>
-      <h1 className="my-4 text-xl font-bold uppercase sm:my-5 sm:text-2xl">Video</h1>
+      <h1 className="my-4 text-xl font-semibold uppercase sm:my-5 sm:text-2xl">Video</h1>
       <p className="mb-6 text-sm text-muted sm:text-base">직접 운영했던 좋아하는 아이돌의 팬채널이에요.</p>
       <ChannelHeader />
       <VideoSection title="영상" items={videos} pageSize={VIDEO_PAGE_SIZE} variant="video" />

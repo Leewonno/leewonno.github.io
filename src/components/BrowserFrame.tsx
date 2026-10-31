@@ -27,7 +27,7 @@ export default function BrowserFrame({ url, title, screenshot }: BrowserFramePro
           className="block aspect-16/10 w-full bg-code object-cover object-top"
         />
       ) : (
-        <div className="flex aspect-16/10 w-full items-center justify-center bg-code text-2xl font-bold text-muted">
+        <div className="flex aspect-16/10 w-full items-center justify-center bg-code text-2xl font-semibold text-muted">
           {title}
         </div>
       )}
