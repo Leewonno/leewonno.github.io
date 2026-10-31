@@ -39,6 +39,7 @@ export type Resume = {
   github: string
   linkedin: string
   pdf: string
+  portfolio: string
   avatar: string
   experiences: readonly Experience[]
   certifications: readonly Certification[]
@@ -53,8 +54,8 @@ export const resume: Resume = {
   phone: '010-5253-4143',
   github: 'https://github.com/Leewonno',
   linkedin: 'https://www.linkedin.com/in/leewonno/',
-  // PDF 파일은 수시로 바뀌므로 임시로 현재 이력서 페이지를 새 창에서 연다
-  pdf: '/resume',
+  pdf: 'https://drive.google.com/file/d/1TxxFypiVkNTIR39gAFHlE2cymsGmdZ6j/view?usp=sharing',
+  portfolio: 'https://drive.google.com/file/d/1CWsjS5GcWEneWo5NKfFQZl3x-LllYYgH/view?usp=sharing',
   avatar: '/resume/profile.jpg',
   experiences: [
     {

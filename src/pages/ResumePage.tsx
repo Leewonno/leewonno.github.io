@@ -1,12 +1,24 @@
+import Briefcase from '~icons/akar-icons/briefcase'
 import Envelope from '~icons/akar-icons/envelope'
 import File from '~icons/akar-icons/file'
 import GithubFill from '~icons/akar-icons/github-fill'
+import LinkOut from '~icons/akar-icons/link-out'
 import LinkedinFill from '~icons/akar-icons/linkedin-fill'
 import Phone from '~icons/akar-icons/phone'
 import HighlightAccordion from '@/components/HighlightAccordion'
 import { resume, type Experience, type Highlight } from '@/data/resume'
 
 const CURRENT_LABEL = '재직 중'
+
+const DOCUMENT_LINKS = [
+  { href: resume.pdf, label: '이력서', description: '경력과 기술 요약', Icon: File },
+  {
+    href: resume.portfolio,
+    label: '포트폴리오',
+    description: '프로젝트별 작업 내용',
+    Icon: Briefcase,
+  },
+] as const
 
 const getHighlightKey = (experience: Experience, highlight: Highlight) =>
   `${experience.company}-${highlight.title}`
@@ -95,20 +107,34 @@ export default function ResumePage() {
               <LinkedinFill aria-hidden className="size-3.5 sm:size-4" />
             </a>
           </li>
-          <li>
-            <a
-              href={resume.pdf}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="이력서 PDF (새 창)"
-              title="이력서 PDF"
-              className={contactLinkClass}
-            >
-              <File aria-hidden className="size-3.5 sm:size-4" />
-            </a>
-          </li>
         </ul>
       </div>
+
+      {/* 이력서·포트폴리오 카드를 2열로 배치, 좁은 화면에서는 1열 */}
+      <ul className="mt-2 grid grid-cols-2 gap-3 max-sm:grid-cols-1 max-sm:gap-2 sm:mt-3">
+        {DOCUMENT_LINKS.map(({ href, label, description, Icon }) => (
+          <li key={label}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex h-full items-center gap-3 rounded-lg border border-border p-3 transition-colors duration-300 hover:bg-code motion-reduce:transition-none"
+            >
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-code text-muted transition-colors duration-300 group-hover:bg-background motion-reduce:transition-none">
+                <Icon aria-hidden className="size-4.5" />
+              </span>
+              <span className="min-w-0 flex-1 leading-[1.45]">
+                <strong className="block text-[0.9375rem] font-semibold">
+                  {label}
+                  <span className="sr-only"> (새 창)</span>
+                </strong>
+                <span className="block text-[0.8125rem] text-muted">{description}</span>
+              </span>
+              <LinkOut aria-hidden className="size-3.5 shrink-0 text-muted" />
+            </a>
+          </li>
+        ))}
+      </ul>
 
       <section className="mt-14">
         <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>경력</h2>
