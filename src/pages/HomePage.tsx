@@ -52,8 +52,8 @@ function ResumeCard() {
           </span>
         )}
       </div>
-      <p className="mt-auto pt-3.5 text-lg font-semibold">{resume.name}</p>
-      {current && <p className="mt-0.5 text-[0.8125rem] text-muted">{current.role}</p>}
+      <p className="mt-auto pt-3.5 text-lg leading-tight font-semibold">{resume.name}</p>
+      {current && <p className="text-[0.8125rem] text-muted">{current.role}</p>}
     </HomeCard>
   )
 }
@@ -71,7 +71,6 @@ function PlaygroundCard() {
         {featured.title}
         {rest.length > 0 && ` 외 ${rest.length}개`}
       </h3>
-      <p className="text-[0.8125rem] text-muted">{featured.description}</p>
     </HomeCard>
   )
 }

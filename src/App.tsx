@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
+import BlogPostSkeleton from '@/components/BlogPostSkeleton'
 import Layout from '@/components/Layout'
 import BlogListPage from '@/pages/BlogListPage'
 import HomePage from '@/pages/HomePage'
@@ -22,7 +23,7 @@ export default function App() {
           <Route
             path="blog/:slug"
             element={
-              <Suspense fallback={null}>
+              <Suspense fallback={<BlogPostSkeleton />}>
                 <BlogPostPage />
               </Suspense>
             }
