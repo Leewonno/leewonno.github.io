@@ -66,6 +66,11 @@ export const resume: Resume = {
       period: '2026.06 ~ 재직 중',
       highlights: [
         {
+          title: 'API 명세 전 MSW를 이용한 화면 선개발, DB 영향 없는 E2E 환경 구성',
+          description:
+            'API 명세가 백엔드 개발이 끝난 뒤에 전달돼 화면 개발 지연 → 화면에 필요한 응답을 MSW 핸들러로 먼저 정의해 개발하고, 명세가 나오면 응답 타입을 맞춰 연동. 같은 핸들러를 Vitest와 mock 개발 서버에서 함께 사용해 공용 개발 DB를 건드리지 않고 E2E 테스트 진행',
+        },
+        {
           title: 'JupyterLab 오픈소스 코어 수정을 최소화하여 커스터마이징',
           description:
             '오픈소스 코어 수정 시 upstream 버전 업그레이드마다 충돌 위험 발생 → 변경 사항을 확장 패키지로 격리해 충돌 방지',
