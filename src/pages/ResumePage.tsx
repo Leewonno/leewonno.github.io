@@ -28,7 +28,7 @@ const contactTextLinkClass =
 export default function ResumePage() {
   return (
     <>
-      <title>Resume</title>
+      <title>RESUME</title>
       {/* 좁은 화면에서는 아바타 아래로 쌓아 가운데 정렬 */}
       <header className="flex flex-col items-center gap-4 text-center sm:flex-row sm:gap-10 sm:text-left">
         <div className="size-32 shrink-0 overflow-hidden rounded-full bg-code sm:size-40">
