@@ -35,7 +35,7 @@ export default function BlogPostPage() {
       <title>{post.title}</title>
       {post.description && <meta name="description" content={post.description} />}
       <header className="mb-10 border-b border-border pb-6">
-        <h1 className="mb-2 text-2xl leading-[1.3] font-semibold sm:text-3xl">{post.title}</h1>
+        <h1 className="mt-4 mb-2 text-2xl leading-[1.3] font-semibold sm:mt-5 sm:text-3xl">{post.title}</h1>
         <time className="text-sm text-muted" dateTime={post.date.toISOString()}>
           {formatDate(post.date)}
         </time>
