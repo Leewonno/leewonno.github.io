@@ -39,6 +39,7 @@ export type Resume = {
   github: string
   linkedin: string
   pdf: string
+  portfolio: string
   avatar: string
   experiences: readonly Experience[]
   certifications: readonly Certification[]
@@ -53,8 +54,8 @@ export const resume: Resume = {
   phone: '010-5253-4143',
   github: 'https://github.com/Leewonno',
   linkedin: 'https://www.linkedin.com/in/leewonno/',
-  // PDF 파일은 수시로 바뀌므로 임시로 현재 이력서 페이지를 새 창에서 연다
-  pdf: '/resume',
+  pdf: 'https://drive.google.com/file/d/1TxxFypiVkNTIR39gAFHlE2cymsGmdZ6j/view?usp=sharing',
+  portfolio: 'https://drive.google.com/file/d/1CWsjS5GcWEneWo5NKfFQZl3x-LllYYgH/view?usp=sharing',
   avatar: '/resume/profile.jpg',
   experiences: [
     {
@@ -64,6 +65,11 @@ export const resume: Resume = {
       role: 'Frontend Engineer',
       period: '2026.06 ~ 재직 중',
       highlights: [
+        {
+          title: 'API 명세 전 MSW를 이용한 화면 선개발, DB 영향 없는 E2E 환경 구성',
+          description:
+            'API 명세가 백엔드 개발이 끝난 뒤에 전달돼 화면 개발 지연 → 화면에 필요한 응답을 MSW 핸들러로 먼저 정의해 개발하고, 명세가 나오면 응답 타입을 맞춰 연동. 같은 핸들러를 Vitest와 mock 개발 서버에서 함께 사용해 공용 개발 DB를 건드리지 않고 E2E 테스트 진행',
+        },
         {
           title: 'JupyterLab 오픈소스 코어 수정을 최소화하여 커스터마이징',
           description:
