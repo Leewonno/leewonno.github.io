@@ -118,7 +118,7 @@ export default function HomePage() {
   return (
     <>
       <PageMeta
-        title="이원노 (Leewonno) | Frontend Engineer"
+        title="Leewonno"
         description={SITE_DESCRIPTION}
         jsonLd={[websiteSchema, personSchema]}
       />

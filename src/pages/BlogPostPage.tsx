@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 import Comments from "@/components/Comments";
 import PageMeta from "@/components/PageMeta";
 import { formatDate, getPostBySlug } from "@/lib/posts";
-import { blogPostingSchema, SITE_DESCRIPTION, SITE_NAME } from "@/lib/seo";
+import { blogPostingSchema, SITE_DESCRIPTION } from "@/lib/seo";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 // 마크다운 본문은 @tailwindcss/typography(prose) 에 사이트 색상(prose-site, index.css)을 입혀 사용
@@ -34,7 +34,7 @@ export default function BlogPostPage() {
   return (
     <article>
       <PageMeta
-        title={`${post.title} | ${SITE_NAME}`}
+        title={post.title}
         description={post.description ?? SITE_DESCRIPTION}
         article={{ publishedTime: post.date.toISOString(), tags: post.tags }}
         jsonLd={[blogPostingSchema(post)]}

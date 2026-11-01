@@ -12,7 +12,7 @@ export default function NovelPage() {
   return (
     <>
       <PageMeta
-        title="연재 소설 | Leewonno"
+        title="NOVEL"
         description="직접 써서 연재했던 소설 모음입니다."
       />
       <h1 className="my-4 text-xl font-semibold uppercase sm:my-5 sm:text-2xl">
