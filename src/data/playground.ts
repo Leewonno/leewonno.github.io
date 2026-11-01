@@ -37,16 +37,16 @@ export const projects: readonly PlaygroundProject[] = [
     github: 'https://github.com/Leewonno/NMIXX-FANS-APP',
     linkLabel: '시연 영상',
   },
+  {
+    title: 'NOVELCUT',
+    url: 'https://novelcut-1f6f2.web.app/',
+    description: '컷 형식으로 읽는 웹소설 연재 플랫폼',
+    stack: ['React', 'JavaScript', 'Firebase', 'Node.js', 'MySQL', 'AWS'],
+    year: 2023,
+    screenshot: '/playground/novelcut.jpg',
+    github: 'https://github.com/Leewonno/novelcut',
+  },
   // TODO: 이력서 제출 기간 동안 임시로 숨김, 끝나면 주석 해제
-  // {
-  //   title: 'NOVELCUT',
-  //   url: 'https://novelcut-1f6f2.web.app/',
-  //   description: '컷 형식으로 읽는 웹소설 연재 플랫폼',
-  //   stack: ['React', 'JavaScript', 'Firebase', 'Node.js', 'MySQL', 'AWS'],
-  //   year: 2023,
-  //   // TODO: UI 리팩토링 후 스크린샷 추가
-  //   github: 'https://github.com/Leewonno/novelcut',
-  // },
   // {
   //   title: 'Moodtrack',
   //   url: 'https://moodtrack.example.com',
