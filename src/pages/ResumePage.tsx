@@ -49,7 +49,7 @@ export default function ResumePage() {
   return (
     <>
       <PageMeta
-        title="이력서 | 이원노"
+        title="RESUME"
         description="이력서 페이지입니다."
         jsonLd={[personSchema]}
       />
