@@ -1,21 +1,22 @@
-import { useState } from 'react'
-import ChevronDown from '~icons/akar-icons/chevron-down'
-import ChevronRight from '~icons/akar-icons/chevron-right'
-import Play from '~icons/akar-icons/triangle-right-fill'
-import YoutubeLogo from '@/components/YoutubeLogo'
-import { channel, shorts, videos, type Video } from '@/data/video'
-import { formatDate } from '@/lib/posts'
+import { useState } from "react";
+import ChevronDown from "~icons/akar-icons/chevron-down";
+import ChevronRight from "~icons/akar-icons/chevron-right";
+import Play from "~icons/akar-icons/triangle-right-fill";
+import PageMeta from "@/components/PageMeta";
+import YoutubeLogo from "@/components/YoutubeLogo";
+import { channel, shorts, videos, type Video } from "@/data/video";
+import { formatDate } from "@/lib/posts";
 
-const VIDEO_PAGE_SIZE = 4
-const SHORTS_PAGE_SIZE = 8
+const VIDEO_PAGE_SIZE = 4;
+const SHORTS_PAGE_SIZE = 8;
 
 // 3214 → '3.2천', 1193804 → '119만'
-const viewFormatter = new Intl.NumberFormat('ko-KR', { notation: 'compact' })
+const viewFormatter = new Intl.NumberFormat("ko-KR", { notation: "compact" });
 // 80100 → '8.01만', 281637038 → '2.82억'
-const channelStatFormatter = new Intl.NumberFormat('ko-KR', {
-  notation: 'compact',
+const channelStatFormatter = new Intl.NumberFormat("ko-KR", {
+  notation: "compact",
   maximumSignificantDigits: 3,
-})
+});
 
 function ChannelHeader() {
   return (
@@ -25,11 +26,22 @@ function ChannelHeader() {
       rel="noreferrer"
       className="flex items-center gap-3.5 rounded-2xl border border-border px-4 py-3.5 transition-colors duration-300 hover:bg-code motion-reduce:transition-none"
     >
-      <img src={channel.avatar} alt="" width={56} height={56} className="size-14 shrink-0 rounded-full object-cover" />
+      <img
+        src={channel.avatar}
+        alt=""
+        width={56}
+        height={56}
+        className="size-14 shrink-0 rounded-full object-cover"
+      />
       <div className="min-w-0 flex-1">
         <p className="flex items-center gap-1.5 font-semibold">
           {channel.name}
-          <YoutubeLogo width={16} height={11} className="shrink-0" aria-hidden />
+          <YoutubeLogo
+            width={16}
+            height={11}
+            className="shrink-0"
+            aria-hidden
+          />
         </p>
         {/* 항목마다 앞에 '·' 를 붙이고 왼쪽으로 1em 당겨 잘라내서, 줄 맨 앞에 오는 '·' 는 보이지 않게 함 */}
         <div className="overflow-hidden text-[0.8125rem] text-muted">
@@ -49,38 +61,51 @@ function ChannelHeader() {
           </p>
         </div>
       </div>
-      <ChevronRight width={18} height={18} className="shrink-0 text-muted" aria-hidden />
+      <ChevronRight
+        width={18}
+        height={18}
+        className="shrink-0 text-muted"
+        aria-hidden
+      />
     </a>
-  )
+  );
 }
 
 type VideoSectionProps = {
-  title: string
-  items: readonly Video[]
-  pageSize: number
-  variant: 'video' | 'short'
-}
+  title: string;
+  items: readonly Video[];
+  pageSize: number;
+  variant: "video" | "short";
+};
 
 function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
-  const [visibleCount, setVisibleCount] = useState(pageSize)
-  const [loadedIds, setLoadedIds] = useState<ReadonlySet<string>>(() => new Set())
-  const isShort = variant === 'short'
+  const [visibleCount, setVisibleCount] = useState(pageSize);
+  const [loadedIds, setLoadedIds] = useState<ReadonlySet<string>>(
+    () => new Set(),
+  );
+  const isShort = variant === "short";
 
-  const shownItems = items.slice(0, visibleCount)
+  const shownItems = items.slice(0, visibleCount);
   // 받아진 순서와 상관없이 왼쪽부터 차례로 보이도록, 앞에서부터 연속으로 로드된 썸네일까지만 표시
-  const firstPendingIndex = shownItems.findIndex((item) => !loadedIds.has(item.id))
-  const revealedCount = firstPendingIndex === -1 ? shownItems.length : firstPendingIndex
+  const firstPendingIndex = shownItems.findIndex(
+    (item) => !loadedIds.has(item.id),
+  );
+  const revealedCount =
+    firstPendingIndex === -1 ? shownItems.length : firstPendingIndex;
 
-  const markLoaded = (id: string) => setLoadedIds((prev) => new Set(prev).add(id))
+  const markLoaded = (id: string) =>
+    setLoadedIds((prev) => new Set(prev).add(id));
 
   return (
     <section className="mt-8">
-      <h2 className="my-4 text-xl font-semibold sm:my-5 sm:text-2xl">{title}</h2>
+      <h2 className="my-4 text-xl font-semibold sm:my-5 sm:text-2xl">
+        {title}
+      </h2>
       <ul
         className={
           isShort
-            ? 'grid grid-cols-2 gap-3 sm:grid-cols-4'
-            : 'grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2'
+            ? "grid grid-cols-2 gap-3 sm:grid-cols-4"
+            : "grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2"
         }
       >
         {shownItems.map((item, index) => (
@@ -101,12 +126,12 @@ function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
                 <img
                   src={`https://i.ytimg.com/vi/${item.id}/hqdefault.jpg`}
                   // 쇼츠는 썸네일만 보여주므로 제목을 alt 로 제공
-                  alt={isShort ? item.title : ''}
+                  alt={isShort ? item.title : ""}
                   loading="lazy"
                   onLoad={() => markLoaded(item.id)}
                   // 실패한 썸네일이 뒤쪽 항목을 계속 막지 않도록 로드된 것으로 처리
                   onError={() => markLoaded(item.id)}
-                  className={`block w-full object-cover transition-opacity duration-300 motion-reduce:transition-none ${isShort ? 'aspect-9/16 scale-[1.02]' : 'aspect-video'} ${index < revealedCount ? 'opacity-100' : 'opacity-0'}`}
+                  className={`block w-full object-cover transition-opacity duration-300 motion-reduce:transition-none ${isShort ? "aspect-9/16 scale-[1.02]" : "aspect-video"} ${index < revealedCount ? "opacity-100" : "opacity-0"}`}
                 />
                 <span
                   className="absolute inset-0 flex items-center justify-center bg-black/45 text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100"
@@ -123,11 +148,12 @@ function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
               )}
               {(item.views !== undefined || item.publishedAt) && (
                 <p className="text-sm text-muted">
-                  {item.views !== undefined && `조회수 ${viewFormatter.format(item.views)}회`}
-                  {item.views !== undefined && item.publishedAt && ' · '}
+                  {item.views !== undefined &&
+                    `조회수 ${viewFormatter.format(item.views)}회`}
+                  {item.views !== undefined && item.publishedAt && " · "}
                   {item.publishedAt && (
                     <time dateTime={item.publishedAt}>
-                      {formatDate(new Date(`${item.publishedAt}T00:00:00`))}
+                      {formatDate(new Date(item.publishedAt))}
                     </time>
                   )}
                 </p>
@@ -149,18 +175,35 @@ function VideoSection({ title, items, pageSize, variant }: VideoSectionProps) {
         </div>
       )}
     </section>
-  )
+  );
 }
 
 export default function VideoPage() {
   return (
     <>
-      <title>VIDEO</title>
-      <h1 className="my-4 text-xl font-semibold uppercase sm:my-5 sm:text-2xl">Video</h1>
-      <p className="mb-6 text-sm text-muted sm:text-base">직접 운영했던 좋아하는 아이돌의 팬채널이에요.</p>
+      <PageMeta
+        title={`유튜브 채널 ${channel.name} | Leewonno`}
+        description={`직접 운영했던 아이돌 NMIXX 팬채널 ${channel.name}의 영상과 쇼츠 모음입니다.`}
+      />
+      <h1 className="my-4 text-xl font-semibold uppercase sm:my-5 sm:text-2xl">
+        Video
+      </h1>
+      <p className="mb-6 text-sm text-muted sm:text-base">
+        직접 운영했던 좋아하는 아이돌의 팬채널이에요.
+      </p>
       <ChannelHeader />
-      <VideoSection title="영상" items={videos} pageSize={VIDEO_PAGE_SIZE} variant="video" />
-      <VideoSection title="Shorts" items={shorts} pageSize={SHORTS_PAGE_SIZE} variant="short" />
+      <VideoSection
+        title="영상"
+        items={videos}
+        pageSize={VIDEO_PAGE_SIZE}
+        variant="video"
+      />
+      <VideoSection
+        title="Shorts"
+        items={shorts}
+        pageSize={SHORTS_PAGE_SIZE}
+        variant="short"
+      />
     </>
-  )
+  );
 }

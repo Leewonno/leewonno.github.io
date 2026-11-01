@@ -14,11 +14,11 @@ import { resume } from '@/data/resume'
 import { setTheme, useTheme } from '@/lib/theme'
 
 const NAV_ITEMS = [
-  { to: '/blog', label: 'Blog', Icon: Pencil },
-  { to: '/resume', label: 'Resume', Icon: File },
-  { to: '/playground', label: 'Playground', Icon: GameController },
-  { to: '/video', label: 'Video', Icon: Video },
-  { to: '/novel', label: 'Novel', Icon: BookOpen },
+  { to: '/blog/', label: 'Blog', Icon: Pencil },
+  { to: '/resume/', label: 'Resume', Icon: File },
+  { to: '/playground/', label: 'Playground', Icon: GameController },
+  { to: '/video/', label: 'Video', Icon: Video },
+  { to: '/novel/', label: 'Novel', Icon: BookOpen },
 ] as const
 
 const SOCIAL_LINKS = [

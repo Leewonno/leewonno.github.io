@@ -79,4 +79,18 @@ frontmatter 가 형식에 맞지 않으면 빌드가 실패합니다 (`src/lib/p
 
 최초 1회: 저장소 **Settings → Pages → Build and deployment → Source** 를 **GitHub Actions** 로 설정해야 합니다.
 
-`BrowserRouter` 를 쓰기 때문에 빌드 시 `dist/index.html` 을 `dist/404.html` 로 복사해, `/blog/xxx` 같은 경로로 직접 접근해도 앱이 뜨도록 합니다.
+### 프리렌더링
+
+빌드할 때 경로마다 본문과 제목·설명이 채워진 `dist/<경로>/index.html` 을 생성합니다 (`src/entry-server.tsx` → `scripts/prerender.mjs`). 그래서 직접 접근해도 200 으로 응답하고, JS 를 실행하지 않는 크롤러도 내용을 읽을 수 있습니다. 브라우저에서는 이 HTML 을 하이드레이션합니다.
+
+- **새 페이지를 추가하면 `src/entry-server.tsx` 의 `STATIC_ROUTES` 에도 넣어야 합니다.** 글 상세 경로는 자동으로 추가됩니다.
+- 페이지는 Node 에서도 렌더링되므로 `window`, `document` 같은 브라우저 API 는 `useEffect` 안에서만 쓰고, 렌더링 결과가 서버와 브라우저에서 같아야 합니다 (현재 시각, 난수, 시간대 의존 금지).
+- 없는 주소는 `dist/404.html` 이 404 상태로 앱을 띄웁니다.
+- GitHub Pages 는 폴더 경로를 슬래시가 붙은 주소로 리다이렉트하므로 대표 주소는 `/blog/` 형식입니다. 내부 링크도 슬래시를 붙여 씁니다.
+
+### SEO
+
+- 페이지마다 `PageMeta` (`src/components/PageMeta.tsx`) 로 제목, 설명, canonical, Open Graph 를 지정합니다. 구조화 데이터와 사이트 정보는 `src/lib/seo.ts` 에 있습니다.
+- `sitemap.xml` 은 빌드 때 `STATIC_ROUTES` 와 글 목록으로 자동 생성합니다. `robots.txt` 는 `public/` 에 있습니다.
+- 공유 이미지는 `public/og.png` (1200x630) 입니다.
+- 옛 주소를 새 주소로 보내려면 `scripts/prerender.mjs` 의 `REDIRECTS` 에 추가합니다.

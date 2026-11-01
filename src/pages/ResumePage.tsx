@@ -1,46 +1,57 @@
-import Briefcase from '~icons/akar-icons/briefcase'
-import Envelope from '~icons/akar-icons/envelope'
-import File from '~icons/akar-icons/file'
-import GithubFill from '~icons/akar-icons/github-fill'
-import LinkOut from '~icons/akar-icons/link-out'
-import LinkedinFill from '~icons/akar-icons/linkedin-fill'
-import Phone from '~icons/akar-icons/phone'
-import HighlightAccordion from '@/components/HighlightAccordion'
-import { resume, type Experience, type Highlight } from '@/data/resume'
+import Briefcase from "~icons/akar-icons/briefcase";
+import Envelope from "~icons/akar-icons/envelope";
+import File from "~icons/akar-icons/file";
+import GithubFill from "~icons/akar-icons/github-fill";
+import LinkOut from "~icons/akar-icons/link-out";
+import LinkedinFill from "~icons/akar-icons/linkedin-fill";
+import HighlightAccordion from "@/components/HighlightAccordion";
+import PageMeta from "@/components/PageMeta";
+import { resume, type Experience, type Highlight } from "@/data/resume";
+import { personSchema } from "@/lib/seo";
 
-const CURRENT_LABEL = '재직 중'
+const CURRENT_LABEL = "재직 중";
 
 const DOCUMENT_LINKS = [
-  { href: resume.pdf, label: '이력서', description: '경력과 기술 요약', Icon: File },
+  {
+    href: resume.pdf,
+    label: "이력서",
+    description: "경력과 기술 요약",
+    Icon: File,
+  },
   {
     href: resume.portfolio,
-    label: '포트폴리오',
-    description: '프로젝트별 작업 내용',
+    label: "포트폴리오",
+    description: "프로젝트별 작업 내용",
     Icon: Briefcase,
   },
-] as const
+] as const;
 
 const getHighlightKey = (experience: Experience, highlight: Highlight) =>
-  `${experience.company}-${highlight.title}`
+  `${experience.company}-${highlight.title}`;
 
 // '2026.06 ~ 재직 중' → 시작/종료를 두 줄로 나눠 왼쪽 기간 열에 표시
 const splitPeriod = (period: string) => {
-  const [start, end = ''] = period.split('~').map((part) => part.trim())
-  return { start, end }
-}
+  const [start, end = ""] = period.split("~").map((part) => part.trim());
+  return { start, end };
+};
 
-const sectionTitleClass = 'text-sm font-semibold tracking-[0.08em] text-muted uppercase'
+const sectionTitleClass =
+  "text-sm font-semibold tracking-[0.08em] text-muted uppercase";
 
 const contactLinkClass =
-  'flex size-7 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-8'
+  "flex size-7 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-8";
 
 const contactTextLinkClass =
-  'tabular-nums transition-colors duration-300 hover:text-accent motion-reduce:transition-none'
+  "tabular-nums transition-colors duration-300 hover:text-accent motion-reduce:transition-none";
 
 export default function ResumePage() {
   return (
     <>
-      <title>RESUME</title>
+      <PageMeta
+        title="이력서 | 이원노"
+        description="이력서 페이지입니다."
+        jsonLd={[personSchema]}
+      />
       {/* 좁은 화면에서는 아바타 아래로 쌓아 가운데 정렬 */}
       <header className="flex flex-col items-center gap-4 text-center sm:flex-row sm:gap-10 sm:text-left">
         <div className="size-32 shrink-0 overflow-hidden rounded-full bg-code sm:size-40">
@@ -51,32 +62,26 @@ export default function ResumePage() {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <h1 className="text-2xl leading-snug font-semibold sm:text-[1.75rem]">{resume.name}</h1>
+          <h1 className="text-2xl leading-snug font-semibold sm:text-[1.75rem]">
+            {resume.name}
+          </h1>
           <p className="mt-0.5 text-muted">{resume.headline}</p>
         </div>
       </header>
 
-      {/* 좁은 화면에서는 전화·이메일·링크를 가로선으로 나눈 세 줄로 쌓고 가운데 정렬 */}
+      {/* 좁은 화면에서는 이메일·링크를 가로선으로 나눈 두 줄로 쌓고 가운데 정렬 */}
       <div className="mt-4 text-[0.9375rem] sm:mt-5 sm:flex sm:items-center sm:py-2">
-        <dl className="divide-y divide-border sm:flex sm:divide-x sm:divide-y-0">
-          <div className="flex items-center justify-center gap-2 py-2 sm:justify-start sm:py-0 sm:pr-6">
-            <dt className="text-muted">
-              <Phone aria-hidden className="size-4" />
-              <span className="sr-only">Phone</span>
-            </dt>
-            <dd>
-              <a href={`tel:${resume.phone.replace(/\D/g, '')}`} className={contactTextLinkClass}>
-                {resume.phone}
-              </a>
-            </dd>
-          </div>
-          <div className="flex items-center justify-center gap-2 py-2 sm:justify-start sm:border-r sm:border-border sm:px-6 sm:py-0">
+        <dl>
+          <div className="flex items-center justify-center gap-2 py-2 sm:justify-start sm:border-r sm:border-border sm:py-0 sm:pr-6">
             <dt className="text-muted">
               <Envelope aria-hidden className="size-4" />
               <span className="sr-only">Email</span>
             </dt>
             <dd>
-              <a href={`mailto:${resume.email}`} className={contactTextLinkClass}>
+              <a
+                href={`mailto:${resume.email}`}
+                className={contactTextLinkClass}
+              >
                 {resume.email}
               </a>
             </dd>
@@ -132,16 +137,21 @@ export default function ResumePage() {
                   {description}
                 </span>
               </span>
-              <LinkOut aria-hidden className="size-3 shrink-0 text-muted sm:size-3.5" />
+              <LinkOut
+                aria-hidden
+                className="size-3 shrink-0 text-muted sm:size-3.5"
+              />
             </a>
           </li>
         ))}
       </ul>
 
       <section className="mt-14">
-        <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>경력</h2>
+        <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>
+          경력
+        </h2>
         {resume.experiences.map((experience) => {
-          const { start, end } = splitPeriod(experience.period)
+          const { start, end } = splitPeriod(experience.period);
           return (
             <article
               key={`${experience.company}-${experience.period}`}
@@ -149,7 +159,7 @@ export default function ResumePage() {
             >
               <p className="pt-0.5 text-sm text-muted tabular-nums sm:text-[0.9375rem]">
                 {start} ~
-                <br className="max-sm:hidden" />{' '}
+                <br className="max-sm:hidden" />{" "}
                 {end === CURRENT_LABEL ? (
                   <span className="text-xs font-semibold text-accent sm:text-[0.8125rem]">
                     {end}
@@ -163,7 +173,11 @@ export default function ResumePage() {
                   {experience.logo && (
                     // 심볼 색이 다크 모드 배경에 묻히지 않도록 항상 흰 바탕 위에 표시
                     <span className="flex size-5.5 shrink-0 items-center justify-center rounded-[5px] border border-border/50 bg-white">
-                      <img src={experience.logo} alt="" className="size-3.5 object-contain" />
+                      <img
+                        src={experience.logo}
+                        alt=""
+                        className="size-3.5 object-contain"
+                      />
                     </span>
                   )}
                   {experience.company}
@@ -181,22 +195,30 @@ export default function ResumePage() {
                 </div>
               </div>
             </article>
-          )
+          );
         })}
       </section>
 
       <section className="mt-14">
-        <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>기술</h2>
+        <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>
+          기술
+        </h2>
         {/* 카테고리별 카드를 2열로 배치, 좁은 화면에서는 1열 */}
         <div className="grid grid-cols-2 gap-3 pt-4 max-sm:grid-cols-1">
           {resume.skills.map((group) => (
-            <div key={group.category} className="rounded-lg border border-border p-4">
+            <div
+              key={group.category}
+              className="rounded-lg border border-border p-4"
+            >
               <h3 className="text-xs font-semibold tracking-[0.08em] text-muted uppercase">
                 {group.category}
               </h3>
               <ul className="mt-2.5 flex flex-wrap gap-1.5">
                 {group.items.map((item) => (
-                  <li key={item} className="rounded-md border border-border px-2 py-0.5 text-sm">
+                  <li
+                    key={item}
+                    className="rounded-md border border-border px-2 py-0.5 text-sm"
+                  >
                     {item}
                   </li>
                 ))}
@@ -207,7 +229,9 @@ export default function ResumePage() {
       </section>
 
       <section className="mt-14">
-        <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>자격증</h2>
+        <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>
+          자격증
+        </h2>
         <ul>
           {resume.certifications.map((certification) => (
             <li
@@ -220,14 +244,18 @@ export default function ResumePage() {
                   {certification.issuer}
                 </span>
               </span>
-              <span className="text-[0.9375rem] text-muted tabular-nums">{certification.date}</span>
+              <span className="text-[0.9375rem] text-muted tabular-nums">
+                {certification.date}
+              </span>
             </li>
           ))}
         </ul>
       </section>
 
       <section className="mt-14">
-        <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>학력</h2>
+        <h2 className={`${sectionTitleClass} border-b border-border pb-2`}>
+          학력
+        </h2>
         <ul>
           {resume.education.map((education) => (
             <li
@@ -240,11 +268,13 @@ export default function ResumePage() {
                   {education.major} · 학점 {education.gpa}
                 </span>
               </span>
-              <span className="text-[0.9375rem] text-muted tabular-nums">{education.period}</span>
+              <span className="text-[0.9375rem] text-muted tabular-nums">
+                {education.period}
+              </span>
             </li>
           ))}
         </ul>
       </section>
     </>
-  )
+  );
 }
