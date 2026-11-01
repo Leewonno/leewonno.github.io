@@ -1,10 +1,12 @@
 import { lazy, Suspense } from 'react'
 import BrowserFrame from '@/components/BrowserFrame'
 import HomeCard, { homeCardClass } from '@/components/HomeCard'
+import PageMeta from '@/components/PageMeta'
 import { NOVEL_STATUS_LABEL, novels } from '@/data/novel'
 import { projects } from '@/data/playground'
 import { resume } from '@/data/resume'
 import { formatDate, getAllPosts } from '@/lib/posts'
+import { personSchema, SITE_DESCRIPTION, websiteSchema } from '@/lib/seo'
 
 // 영상 목록 데이터가 커서 분리 로딩
 const VideoPreviewCard = lazy(() => import('@/components/VideoPreviewCard'))
@@ -15,7 +17,7 @@ function BlogCard() {
   return (
     // 글이 하나만 보이므로 목록 대신 해당 글로 바로 이동
     <HomeCard
-      to={latestPost ? `/blog/${latestPost.slug}` : '/blog'}
+      to={latestPost ? `/blog/${latestPost.slug}/` : '/blog/'}
       label="Blog"
       className="sm:col-span-4"
     >
@@ -38,7 +40,7 @@ function ResumeCard() {
   const [current] = resume.experiences
 
   return (
-    <HomeCard to="/resume" label="Resume" className="sm:col-span-2">
+    <HomeCard to="/resume/" label="Resume" className="sm:col-span-2">
       <div className="relative">
         <img
           src={resume.avatar}
@@ -63,7 +65,7 @@ function PlaygroundCard() {
   if (!featured) return null
 
   return (
-    <HomeCard to="/playground" label="Playground" className="sm:col-span-3">
+    <HomeCard to="/playground/" label="Playground" className="sm:col-span-3">
       <div className="mt-auto overflow-hidden rounded-xl border border-border shadow-[0_8px_24px_rgb(31_35_40/0.1)]">
         <BrowserFrame url={featured.url} title={featured.title} screenshot={featured.screenshot} />
       </div>
@@ -82,7 +84,7 @@ function formatDay(value: string) {
 
 function NovelCard() {
   return (
-    <HomeCard to="/novel" label="Novel" className="sm:col-span-6">
+    <HomeCard to="/novel/" label="Novel" className="sm:col-span-6">
       <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {novels.map((novel) => (
           <li key={novel.url} className="flex gap-3.5">
@@ -115,8 +117,12 @@ function NovelCard() {
 export default function HomePage() {
   return (
     <>
-      <title>Leewonno</title>
-      <h1 className="sr-only">Leewonno</h1>
+      <PageMeta
+        title="이원노 (Leewonno) | Frontend Engineer"
+        description={SITE_DESCRIPTION}
+        jsonLd={[websiteSchema, personSchema]}
+      />
+      <h1 className="sr-only">이원노 (Leewonno)</h1>
       <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-6">
         <BlogCard />
         <ResumeCard />

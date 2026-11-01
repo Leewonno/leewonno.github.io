@@ -1,14 +1,22 @@
-import ArrowUpRight from '~icons/akar-icons/arrow-up-right'
-import GithubFill from '~icons/akar-icons/github-fill'
-import BrowserFrame from '@/components/BrowserFrame'
-import { projects } from '@/data/playground'
+import ArrowUpRight from "~icons/akar-icons/arrow-up-right";
+import GithubFill from "~icons/akar-icons/github-fill";
+import BrowserFrame from "@/components/BrowserFrame";
+import PageMeta from "@/components/PageMeta";
+import { projects } from "@/data/playground";
 
 export default function PlaygroundPage() {
   return (
     <>
-      <title>PLAYGROUND</title>
-      <h1 className="my-4 text-xl font-semibold uppercase sm:my-5 sm:text-2xl">Playground</h1>
-      <p className="mb-6 text-sm text-muted sm:text-base">직접 만들어서 배포한 개인 프로젝트예요.</p>
+      <PageMeta
+        title="개인 프로젝트 | Leewonno"
+        description="직접 만들어서 배포한 크롬 확장 프로그램 등 개인 프로젝트 모음입니다."
+      />
+      <h1 className="my-4 text-xl font-semibold uppercase sm:my-5 sm:text-2xl">
+        Playground
+      </h1>
+      <p className="mb-6 text-sm text-muted sm:text-base">
+        직접 만들어서 배포한 개인 프로젝트예요.
+      </p>
       <ul>
         {projects.map((project) => (
           <li
@@ -24,7 +32,11 @@ export default function PlaygroundPage() {
               aria-hidden
               className="block overflow-hidden rounded-xl border border-border shadow-[0_8px_24px_rgb(31_35_40/0.1)] sm:w-[56%] sm:shrink-0"
             >
-              <BrowserFrame url={project.url} title={project.title} screenshot={project.screenshot} />
+              <BrowserFrame
+                url={project.url}
+                title={project.title}
+                screenshot={project.screenshot}
+              />
             </a>
             <div className="min-w-0 flex-1">
               <h2 className="text-xl font-semibold">{project.title}</h2>
@@ -48,7 +60,7 @@ export default function PlaygroundPage() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-1 rounded-lg border border-foreground bg-foreground px-3 py-1.5 text-background hover:opacity-85"
                 >
-                  {project.linkLabel ?? '사이트 열기'}
+                  {project.linkLabel ?? "사이트 열기"}
                   <ArrowUpRight width={14} height={14} aria-hidden />
                 </a>
                 {project.github && (
@@ -68,5 +80,5 @@ export default function PlaygroundPage() {
         ))}
       </ul>
     </>
-  )
+  );
 }

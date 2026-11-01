@@ -16,7 +16,7 @@ const latestVideos = videos.slice(0, VIDEO_PREVIEW_COUNT)
 
 export default function VideoPreviewCard() {
   return (
-    <HomeCard to="/video" label="Video" className="sm:col-span-3">
+    <HomeCard to="/video/" label="Video" className="sm:col-span-3">
       {/* 같은 폭의 두 칸에서 9:16 쇼츠 1개와 16:9 영상 3개의 높이가 거의 같아짐 */}
       <div className="mt-auto grid grid-cols-2 gap-1.5">
         {latestShort && (
