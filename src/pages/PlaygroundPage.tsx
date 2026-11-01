@@ -9,7 +9,7 @@ export default function PlaygroundPage() {
     <>
       <PageMeta
         title="PLAYGROUND"
-        description="직접 만들어서 배포한 크롬 확장 프로그램 등 개인 프로젝트 모음입니다."
+        description="직접 만들어서 배포한 개인 프로젝트 모음입니다."
       />
       <h1 className="my-4 text-xl font-semibold uppercase sm:my-5 sm:text-2xl">
         Playground
