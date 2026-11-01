@@ -109,7 +109,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <footer className="border-t border-border py-6 text-sm text-muted">
-        <ul className="flex gap-3">
+        <ul className="flex gap-2 sm:gap-3">
           {SOCIAL_LINKS.map(({ href, label, title, Icon }) => (
             <li key={href}>
               <a
