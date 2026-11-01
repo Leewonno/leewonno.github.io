@@ -35,6 +35,7 @@ export type Resume = {
   name: string
   headline: string
   email: string
+  phone: string
   github: string
   linkedin: string
   pdf: string
@@ -50,6 +51,7 @@ export const resume: Resume = {
   name: '이원노',
   headline: 'Frontend Engineer',
   email: 'dldnjssh123@naver.com',
+  phone: '010-5253-4143',
   github: 'https://github.com/Leewonno',
   linkedin: 'https://www.linkedin.com/in/leewonno/',
   pdf: 'https://drive.google.com/file/d/1TxxFypiVkNTIR39gAFHlE2cymsGmdZ6j/view?usp=sharing',

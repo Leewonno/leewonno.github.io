@@ -4,6 +4,7 @@ import File from "~icons/akar-icons/file";
 import GithubFill from "~icons/akar-icons/github-fill";
 import LinkOut from "~icons/akar-icons/link-out";
 import LinkedinFill from "~icons/akar-icons/linkedin-fill";
+import Phone from "~icons/akar-icons/phone";
 import HighlightAccordion from "@/components/HighlightAccordion";
 import PageMeta from "@/components/PageMeta";
 import { resume, type Experience, type Highlight } from "@/data/resume";
@@ -69,10 +70,24 @@ export default function ResumePage() {
         </div>
       </header>
 
-      {/* 좁은 화면에서는 이메일·링크를 가로선으로 나눈 두 줄로 쌓고 가운데 정렬 */}
+      {/* 좁은 화면에서는 전화·이메일·링크를 가로선으로 나눈 세 줄로 쌓고 가운데 정렬 */}
       <div className="mt-4 text-[0.9375rem] sm:mt-5 sm:flex sm:items-center sm:py-2">
-        <dl>
-          <div className="flex items-center justify-center gap-2 py-2 sm:justify-start sm:border-r sm:border-border sm:py-0 sm:pr-6">
+        <dl className="divide-y divide-border sm:flex sm:divide-x sm:divide-y-0">
+          <div className="flex items-center justify-center gap-2 py-2 sm:justify-start sm:py-0 sm:pr-6">
+            <dt className="text-muted">
+              <Phone aria-hidden className="size-4" />
+              <span className="sr-only">Phone</span>
+            </dt>
+            <dd>
+              <a
+                href={`tel:${resume.phone.replace(/\D/g, "")}`}
+                className={contactTextLinkClass}
+              >
+                {resume.phone}
+              </a>
+            </dd>
+          </div>
+          <div className="flex items-center justify-center gap-2 py-2 sm:justify-start sm:border-r sm:border-border sm:px-6 sm:py-0">
             <dt className="text-muted">
               <Envelope aria-hidden className="size-4" />
               <span className="sr-only">Email</span>
