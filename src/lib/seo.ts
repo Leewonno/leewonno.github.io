@@ -4,7 +4,7 @@ import type { Post } from "@/lib/posts";
 export const SITE_URL = "https://leewonno.github.io";
 export const SITE_NAME = "Leewonno";
 export const SITE_DESCRIPTION =
-  "프론트엔드 엔지니어 이원노(Leewonno)의 개인 사이트. 기술 블로그, 이력서, 개인 프로젝트, 유튜브 채널, 연재 소설을 모았습니다.";
+  "기술 블로그, 이력서, 개인 프로젝트, 유튜브 채널, 연재 소설을 모았습니다.";
 export const OG_IMAGE = {
   url: `${SITE_URL}/og.png`,
   width: 1200,
