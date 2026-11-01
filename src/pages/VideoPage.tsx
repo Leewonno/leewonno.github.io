@@ -183,7 +183,7 @@ export default function VideoPage() {
     <>
       <PageMeta
         title="VIDEO"
-        description={`직접 운영했던 아이돌 NMIXX 팬채널 ${channel.name}의 영상과 쇼츠 모음입니다.`}
+        description={`직접 운영했던 팬채널의 영상과 쇼츠 모음입니다.`}
       />
       <h1 className="my-4 text-xl font-semibold uppercase sm:my-5 sm:text-2xl">
         Video
