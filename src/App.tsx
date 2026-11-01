@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Navigate, Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router'
 import BlogPostSkeleton from '@/components/BlogPostSkeleton'
 import Layout from '@/components/Layout'
 import BlogListPage from '@/pages/BlogListPage'
@@ -31,8 +31,6 @@ export default function App() {
         />
         <Route path="resume" element={<ResumePage />} />
         <Route path="playground" element={<PlaygroundPage />} />
-        {/* 예전 주소 호환 */}
-        <Route path="works" element={<Navigate to="/playground/" replace />} />
         <Route
           path="video"
           element={

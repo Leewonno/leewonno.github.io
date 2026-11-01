@@ -10,7 +10,7 @@ React + TypeScript + Vite 로 만들고 GitHub Pages 에 정적 배포합니다.
 | `/` | 각 페이지 미리보기를 모은 벤토 그리드 홈 |
 | `/blog`, `/blog/:slug` | 기술 블로그 목록 / 글 상세 (giscus 댓글) |
 | `/resume` | 이력서 |
-| `/playground` | 개인 프로젝트 (`/works` 는 여기로 리다이렉트) |
+| `/playground` | 개인 프로젝트 |
 | `/video` | 유튜브 채널과 롱폼·쇼츠 목록 |
 | `/novel` | 연재 소설 |
 
@@ -93,4 +93,3 @@ frontmatter 가 형식에 맞지 않으면 빌드가 실패합니다 (`src/lib/p
 - 페이지마다 `PageMeta` (`src/components/PageMeta.tsx`) 로 제목, 설명, canonical, Open Graph 를 지정합니다. 구조화 데이터와 사이트 정보는 `src/lib/seo.ts` 에 있습니다.
 - `sitemap.xml` 은 빌드 때 `STATIC_ROUTES` 와 글 목록으로 자동 생성합니다. `robots.txt` 는 `public/` 에 있습니다.
 - 공유 이미지는 `public/og.png` (1200x630) 입니다.
-- 옛 주소를 새 주소로 보내려면 `scripts/prerender.mjs` 의 `REDIRECTS` 에 추가합니다.

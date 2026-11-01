@@ -9,15 +9,6 @@ const DIST_DIR = fileURLToPath(new URL('../dist', import.meta.url))
 const EMPTY_ROOT = '<div id="root"></div>'
 const TITLE_PATTERN = /<title>.*?<\/title>\s*/
 
-// 예전 주소 호환. GitHub Pages 는 서버 리다이렉트를 설정할 수 없어 meta refresh 로 처리
-const REDIRECTS = { '/works/': '/playground/' }
-
-async function writePage(route, html) {
-  const file = join(DIST_DIR, route, 'index.html')
-  await mkdir(dirname(file), { recursive: true })
-  await writeFile(file, html)
-}
-
 const template = await readFile(join(DIST_DIR, 'index.html'), 'utf8')
 if (!template.includes(EMPTY_ROOT) || !TITLE_PATTERN.test(template)) {
   throw new Error('dist/index.html 형식이 예상과 달라 프리렌더링할 수 없습니다')
@@ -32,26 +23,10 @@ for (const route of routes) {
     .replace(TITLE_PATTERN, '')
     .replace('</head>', () => `${head}</head>`)
     .replace(EMPTY_ROOT, () => `<div id="root">${body}</div>`)
-  await writePage(route, page)
-}
 
-for (const [from, to] of Object.entries(REDIRECTS)) {
-  await writePage(
-    from,
-    `<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <title>페이지를 옮겼습니다</title>
-    <link rel="canonical" href="${SITE_URL}${to}" />
-    <meta http-equiv="refresh" content="0; url=${to}" />
-  </head>
-  <body>
-    <a href="${to}">새 주소로 이동</a>
-  </body>
-</html>
-`,
-  )
+  const file = join(DIST_DIR, route, 'index.html')
+  await mkdir(dirname(file), { recursive: true })
+  await writeFile(file, page)
 }
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
