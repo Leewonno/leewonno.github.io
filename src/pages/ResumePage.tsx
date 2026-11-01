@@ -32,7 +32,7 @@ const splitPeriod = (period: string) => {
 const sectionTitleClass = 'text-sm font-semibold tracking-[0.08em] text-muted uppercase'
 
 const contactLinkClass =
-  'inline-flex size-7 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-8'
+  'flex size-7 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-8'
 
 const contactTextLinkClass =
   'tabular-nums transition-colors duration-300 hover:text-accent motion-reduce:transition-none'
@@ -82,7 +82,7 @@ export default function ResumePage() {
             </dd>
           </div>
         </dl>
-        <ul className="flex justify-center gap-1.5 border-t border-border py-2 sm:justify-start sm:border-t-0 sm:py-0 sm:pl-6">
+        <ul className="flex justify-center gap-1.5 border-t border-border py-3 sm:justify-start sm:border-t-0 sm:py-0 sm:pl-6">
           <li>
             <a
               href={resume.github}
