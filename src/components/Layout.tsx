@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router'
 import Cross from '~icons/akar-icons/cross'
 import GithubFill from '~icons/akar-icons/github-fill'
-import LinkedinFill from '~icons/akar-icons/linkedin-fill'
+import LinkedinBoxFill from '~icons/akar-icons/linkedin-box-fill'
 import Moon from '~icons/akar-icons/moon'
 import Sun from '~icons/akar-icons/sun'
 import ThreeLineHorizontal from '~icons/akar-icons/three-line-horizontal'
@@ -19,7 +19,7 @@ const NAV_ITEMS = [
 
 const SOCIAL_LINKS = [
   { href: resume.github, label: 'GitHub', title: 'GitHub', Icon: GithubFill },
-  { href: resume.linkedin, label: 'LinkedIn', title: 'LinkedIn', Icon: LinkedinFill },
+  { href: resume.linkedin, label: 'LinkedIn', title: 'LinkedIn', Icon: LinkedinBoxFill },
 ] as const
 
 const ICON_BUTTON_CLASS =
@@ -109,7 +109,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <footer className="border-t border-border py-6 text-sm text-muted">
-        <ul className="flex gap-3">
+        <ul className="flex gap-2 sm:gap-3">
           {SOCIAL_LINKS.map(({ href, label, title, Icon }) => (
             <li key={href}>
               <a

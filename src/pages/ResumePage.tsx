@@ -32,7 +32,7 @@ const splitPeriod = (period: string) => {
 const sectionTitleClass = 'text-sm font-semibold tracking-[0.08em] text-muted uppercase'
 
 const contactLinkClass =
-  'inline-flex size-7 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-8'
+  'flex size-7 items-center justify-center rounded-md border border-border text-muted transition-colors duration-300 hover:bg-code hover:text-foreground motion-reduce:transition-none sm:size-8'
 
 const contactTextLinkClass =
   'tabular-nums transition-colors duration-300 hover:text-accent motion-reduce:transition-none'
@@ -82,7 +82,7 @@ export default function ResumePage() {
             </dd>
           </div>
         </dl>
-        <ul className="flex justify-center gap-1.5 border-t border-border py-2 sm:justify-start sm:border-t-0 sm:py-0 sm:pl-6">
+        <ul className="flex justify-center gap-1.5 border-t border-border py-3 sm:justify-start sm:border-t-0 sm:py-0 sm:pl-6">
           <li>
             <a
               href={resume.github}
@@ -111,26 +111,28 @@ export default function ResumePage() {
       </div>
 
       {/* 이력서·포트폴리오 카드를 2열로 배치, 좁은 화면에서는 1열 */}
-      <ul className="mt-2 grid grid-cols-2 gap-3 max-sm:grid-cols-1 max-sm:gap-2 sm:mt-3">
+      <ul className="grid grid-cols-2 gap-3 max-sm:grid-cols-1 max-sm:gap-2 sm:mt-3">
         {DOCUMENT_LINKS.map(({ href, label, description, Icon }) => (
           <li key={label}>
             <a
               href={href}
               target="_blank"
               rel="noreferrer"
-              className="group flex h-full items-center gap-3 rounded-lg border border-border p-3 transition-colors duration-300 hover:bg-code motion-reduce:transition-none"
+              className="group flex h-full items-center gap-2.5 rounded-lg border border-border px-2.5 py-2 transition-colors duration-300 hover:bg-code motion-reduce:transition-none sm:gap-3 sm:p-3"
             >
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-code text-muted transition-colors duration-300 group-hover:bg-background motion-reduce:transition-none">
-                <Icon aria-hidden className="size-4.5" />
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-code text-muted transition-colors duration-300 group-hover:bg-background motion-reduce:transition-none sm:size-9">
+                <Icon aria-hidden className="size-4 sm:size-4.5" />
               </span>
               <span className="min-w-0 flex-1 leading-[1.45]">
-                <strong className="block text-[0.9375rem] font-semibold">
+                <strong className="block text-[0.875rem] font-semibold sm:text-[0.9375rem]">
                   {label}
                   <span className="sr-only"> (새 창)</span>
                 </strong>
-                <span className="block text-[0.8125rem] text-muted">{description}</span>
+                <span className="block text-[0.75rem] text-muted sm:text-[0.8125rem]">
+                  {description}
+                </span>
               </span>
-              <LinkOut aria-hidden className="size-3.5 shrink-0 text-muted" />
+              <LinkOut aria-hidden className="size-3 shrink-0 text-muted sm:size-3.5" />
             </a>
           </li>
         ))}
