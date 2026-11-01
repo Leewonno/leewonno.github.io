@@ -64,8 +64,9 @@ export default function MobileNav({ items }: MobileNavProps) {
         }}
       >
         {/* 카드 높이 h-82 = 버튼 자리(3.25rem) + 메뉴 5줄(h-13) + 위아래 여백(p-2), 낮은 화면에선 화면 안으로 줄어듦 */}
+        {/* 오른쪽 아래 모서리는 버튼 원과 같은 반지름이라 버튼 뒤로 카드가 삐져나오지 않음 */}
         <div
-          className={`absolute right-0 bottom-0 max-h-[calc(100dvh-3rem)] border bg-background shadow-lg transition-all duration-300 ease-out motion-reduce:transition-none ${isOpen ? 'h-82 w-56 rounded-[1.25rem] border-border' : 'size-14 rounded-[1.75rem] border-transparent'}`}
+          className={`absolute right-0 bottom-0 max-h-[calc(100dvh-3rem)] border bg-background shadow-lg transition-all duration-300 ease-out motion-reduce:transition-none ${isOpen ? 'h-82 w-56 rounded-[1.25rem] rounded-br-[1.75rem] border-border' : 'size-14 rounded-[1.75rem] border-transparent'}`}
         />
         <button
           ref={buttonRef}
