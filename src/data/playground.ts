@@ -17,6 +17,15 @@ export type PlaygroundProject = {
 // TODO: 샘플 프로젝트(Moodtrack, Bookshelf)를 실제 개인 프로젝트로 교체
 export const projects: readonly PlaygroundProject[] = [
   {
+    title: "hee",
+    url: "https://leewonno.github.io/wonhee/",
+    description: "ILLIT 원희의 팬 사이트",
+    stack: ["React", "TypeScript", "Vite", "React Router"],
+    year: 2026,
+    screenshot: "/playground/wonhee.jpg",
+    github: "https://github.com/Leewonno/wonhee",
+  },
+  {
     title: "질문서랍",
     url: "https://chromewebstore.google.com/detail/question-drawer/mipekafnkjahilpfjkfhmmjjbhkofnlj",
     description:
