@@ -15,12 +15,7 @@ function BlogCard() {
   const [latestPost] = getAllPosts()
 
   return (
-    // 글이 하나만 보이므로 목록 대신 해당 글로 바로 이동
-    <HomeCard
-      to={latestPost ? `/blog/${latestPost.slug}/` : '/blog/'}
-      label="Blog"
-      className="sm:col-span-4"
-    >
+    <HomeCard to="/blog/" label="Blog" className="sm:col-span-4">
       {latestPost ? (
         <>
           <h3 className="mt-auto text-[1.375rem] leading-snug font-semibold">{latestPost.title}</h3>
