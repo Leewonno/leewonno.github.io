@@ -1,6 +1,6 @@
-import { lazy, Suspense } from 'react'
+// import { lazy, Suspense } from 'react' // Video 페이지 숨김
 import BrowserFrame from '@/components/BrowserFrame'
-import HomeCard, { homeCardClass } from '@/components/HomeCard'
+import HomeCard from '@/components/HomeCard' // Video 페이지 숨김: homeCardClass 는 Video 카드 로딩용
 import PageMeta from '@/components/PageMeta'
 import { NOVEL_STATUS_LABEL, novels } from '@/data/novel'
 import { projects } from '@/data/playground'
@@ -9,7 +9,8 @@ import { formatDate, getAllPosts } from '@/lib/posts'
 import { personSchema, SITE_DESCRIPTION, websiteSchema } from '@/lib/seo'
 
 // 영상 목록 데이터가 커서 분리 로딩
-const VideoPreviewCard = lazy(() => import('@/components/VideoPreviewCard'))
+// Video 페이지 숨김
+// const VideoPreviewCard = lazy(() => import('@/components/VideoPreviewCard'))
 
 function BlogCard() {
   const [latestPost] = getAllPosts()
@@ -79,8 +80,8 @@ function formatDay(value: string) {
 
 function NovelCard() {
   return (
-    <HomeCard to="/novel/" label="Novel" className="sm:col-span-6">
-      <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+    <HomeCard to="/novel/" label="Novel" className="sm:col-span-3">
+      <ul className="grid grid-cols-1 gap-5">
         {novels.map((novel) => (
           <li key={novel.url} className="flex gap-3.5">
             <img
@@ -122,11 +123,13 @@ export default function HomePage() {
         <BlogCard />
         <ResumeCard />
         <PlaygroundCard />
+        {/* Video 페이지 숨김
         <Suspense
           fallback={<div aria-hidden className={`${homeCardClass} min-h-64 sm:col-span-3`} />}
         >
           <VideoPreviewCard />
         </Suspense>
+        */}
         <NovelCard />
       </div>
     </>

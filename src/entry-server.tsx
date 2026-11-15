@@ -9,7 +9,8 @@ export { SITE_URL } from '@/lib/seo'
 
 // App.tsx 의 라우트와 맞춰야 함 (글 상세는 아래에서 자동으로 추가)
 // GitHub Pages 가 폴더 경로를 슬래시가 붙은 주소로 리다이렉트하므로 슬래시까지 포함
-const STATIC_ROUTES = ['/', '/blog/', '/resume/', '/playground/', '/video/', '/novel/']
+// Video 페이지 숨김: '/video/' 제외
+const STATIC_ROUTES = ['/', '/blog/', '/resume/', '/playground/', '/novel/']
 
 export function getRoutes(): string[] {
   return [...STATIC_ROUTES, ...getAllPosts().map(({ slug }) => `/blog/${slug}/`)]
