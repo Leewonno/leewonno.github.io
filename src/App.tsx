@@ -12,7 +12,8 @@ import ResumePage from '@/pages/ResumePage'
 // 마크다운 렌더러·코드 하이라이터가 무거워 글 상세 페이지는 분리 로딩
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'))
 // 영상 목록 데이터가 커서 분리 로딩
-const VideoPage = lazy(() => import('@/pages/VideoPage'))
+// Video 페이지 숨김 — 다시 열 때 아래 import 와 라우트 주석 해제
+// const VideoPage = lazy(() => import('@/pages/VideoPage'))
 
 // 라우터는 환경마다 달라서 바깥에서 감쌈 (main.tsx 는 BrowserRouter, entry-server.tsx 는 StaticRouter)
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
         />
         <Route path="resume" element={<ResumePage />} />
         <Route path="playground" element={<PlaygroundPage />} />
+        {/* Video 페이지 숨김
         <Route
           path="video"
           element={
@@ -39,6 +41,7 @@ export default function App() {
             </Suspense>
           }
         />
+        */}
         <Route path="novel" element={<NovelPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

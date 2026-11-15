@@ -8,7 +8,7 @@ import LinkedinBoxFill from '~icons/akar-icons/linkedin-box-fill'
 import Moon from '~icons/akar-icons/moon'
 import Pencil from '~icons/akar-icons/pencil'
 import Sun from '~icons/akar-icons/sun'
-import Video from '~icons/akar-icons/video'
+// import Video from '~icons/akar-icons/video' // Video 페이지 숨김
 import MobileNav from '@/components/MobileNav'
 import { resume } from '@/data/resume'
 import { setTheme, useTheme } from '@/lib/theme'
@@ -17,7 +17,7 @@ const NAV_ITEMS = [
   { to: '/blog/', label: 'Blog', Icon: Pencil },
   { to: '/resume/', label: 'Resume', Icon: File },
   { to: '/playground/', label: 'Playground', Icon: GameController },
-  { to: '/video/', label: 'Video', Icon: Video },
+  // { to: '/video/', label: 'Video', Icon: Video }, // Video 페이지 숨김
   { to: '/novel/', label: 'Novel', Icon: BookOpen },
 ] as const
 
