@@ -37,6 +37,22 @@ export const projects: readonly PlaygroundProject[] = [
     linkLabel: "설치하기",
   },
   {
+    title: "NOVAWIKI",
+    url: "https://novawiki.vercel.app/",
+    description: "마크다운으로 편집하고 문서별 채팅으로 토론하는 위키",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Zustand",
+      "Supabase",
+    ],
+    year: 2026,
+    screenshot: "/playground/novawiki.jpg",
+    github: "https://github.com/Leewonno/novawiki",
+  },
+  {
     title: "NMIXX FANS",
     // 배포된 앱이 없어 시연 영상으로 연결
     url: "https://www.youtube.com/playlist?list=PLxbRBTyPvzi-30qypQgCwtfdSN0dXImkd",
