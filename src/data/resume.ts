@@ -54,8 +54,8 @@ export const resume: Resume = {
   phone: '010-5253-4143',
   github: 'https://github.com/Leewonno',
   linkedin: 'https://www.linkedin.com/in/leewonno/',
-  pdf: 'https://drive.google.com/file/d/1TxxFypiVkNTIR39gAFHlE2cymsGmdZ6j/view?usp=sharing',
-  portfolio: 'https://drive.google.com/file/d/1CWsjS5GcWEneWo5NKfFQZl3x-LllYYgH/view?usp=sharing',
+  pdf: 'https://drive.google.com/file/d/1bJ8m0FARJmVxPoYrs4RNHJar7brcb2oU/view?usp=sharing',
+  portfolio: 'https://drive.google.com/file/d/13EE96jYKeQ_v8LWkWaup4PvSsMnJAbnf/view?usp=sharing',
   avatar: '/resume/profile.jpg',
   experiences: [
     {
